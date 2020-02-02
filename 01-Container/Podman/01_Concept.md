@@ -4,7 +4,7 @@ Podman - Part I:  Introduction
 Introduction
 -------------
 
-As you may have noticed, Red Hat replaces the docker daemon with CRI-O/Podman since RHEL 8.
+As you may have noticed, Red Hat replaces the Docker Daemon with CRI-O/Podman since RHEL 8.
 So what is Podman? According to the definition at [Podman official website](https://podman.io/),
 
 > Podman is a daemonless container engine for developing, managing, and running OCI Containers on your Linux System. Containers can either be run as root or in rootless mode.
