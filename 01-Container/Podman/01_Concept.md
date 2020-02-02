@@ -67,11 +67,11 @@ Checkpoint and Restore
 
 ![](images/container-cli.png)
 
-If you running containers with [tmpfs volume](https://docs.docker.com/storage/tmpfs/), then export/import can not be the backup solution for that container because `export` does not back up the memory content. The files in the tmpfs volume will be lost when you `import` the container from the tar file. Here is `checkpoint/restore` come in. For docker, you need to turn on the experimantal feature to enable the feature. Podman can use these features directly without doing any change.
+If you are running containers with [tmpfs volume](https://docs.docker.com/storage/tmpfs/), then export/import can not be the backup solution for that container because `export` does not back up the memory content. The files in the tmpfs volume will be lost when you `import` the container from the tar file. You can use instead `checkpoint/restore`. For Docker, you will need to turn on 'experimental features to enable this. Podman can use these features directly without doing any change.
 
 #### Run container that supports checkpoint
 
-The `criu` package is required to do checkpoint/restore. And you have to add --security-opt="seccomp=unconfined" when running a container on RHEL because CRIU cannot correctly handle seccomp on RHEL7
+The `criu` package is required to do checkpoint/restore. And you have to add --security-opt="seccomp=unconfined" when running a container on RHEL because CRIU cannot correctly handle seccomp on RHEL7.
 
 ```
 sudo yum install -y criu
@@ -105,6 +105,6 @@ $ sudo podman exec -it hello-nginx ls /tmp/test-01
 Conclusion
 -----------
 
-As the replacement of Docker, Podman provides the same developer experience as Docker while doing things in a slightly more secure way in the background. You could alias Docker with Podman and never notice that there is a completely different tool for managing your local containers. Besides, with the daemonless design and the rootless mode, Podman is a bit more isolated and more secure to use than Docker. You should consider using Podman instead of installing Docker-ce on your local machine.
+As the replacement of Docker, Podman provides the same developer experience as Docker while doing things in a slightly more secure way in the background. You could alias Docker with Podman and never notice that there is a completely different tool for managing your local containers. Besides, with the daemonless design and the rootless mode, Podman is more isolated and secure than Docker. You should consider using Podman instead of installing Docker-ce on your local machine.
 
 
