@@ -20,7 +20,7 @@ So Podman solves the above issues by directly interacting with Image registry, c
 Besides, it also provides a Docker compatible command-line experience enabling users to pull, build, push and run containers.
 
 
-### Docker vs Podman
+#### Docker vs Podman
 
 ![](images/Docker_vs_Podman.png)
 
@@ -35,10 +35,11 @@ For RHEL7, subscribe rhel-7-server-extras-rpms yum repository and then enable Ex
 
 ```
 sudo subscription-manager repos --enable=rhel-7-server-extras-rpms
+sudo yum-config-manager --enable rhel-7-server-extras-rpms
 sudo yum -y install podman
 ```
 
-### Rootless mode?
+#### Rootless mode?
 Podman supports rootless mode, for more details to set up rootless mode on Redhat 7, please refer:
 https://www.redhat.com/en/blog/preview-running-containers-without-root-rhel-76
 
@@ -68,7 +69,7 @@ Checkpoint and Restore
 
 If you running containers with [tmpfs volume](https://docs.docker.com/storage/tmpfs/), then export/import can not be the backup solution for that container because `export` does not back up the memory content. The files in the tmpfs volume will be lost when you `import` the container from the tar file. Here is `checkpoint/restore` come in. For docker, you need to turn on the experimantal feature to enable the feature. Podman can use these features directly without doing any change.
 
-### Run container that supports checkpoint
+#### Run container that supports checkpoint
 
 The `criu` package is required to do checkpoint/restore. And you have to add --security-opt="seccomp=unconfined" when running a container on RHEL because CRIU cannot correctly handle seccomp on RHEL7
 
@@ -77,24 +78,24 @@ sudo yum install -y criu
 sudo podman run -dt --tmpfs /tmp -v /opt/http:/usr/share/nginx/html --security-opt="seccomp=unconfined" --name hello-nginx nginx
 ```
 
-### Create file in /tmp/ folder
+#### Create file in /tmp/ folder
 ```
 sudo podman exec -it hello-nginx touch /tmp/test-01
 ```
 
-### Create checkpoint and export as a file.
+#### Create checkpoint and export as a file.
 ```
 sudo podman container checkpoint --leave-running --export=/tmp/backup.tar hello-nginx
 ```
 
-### Restore from file
+#### Restore from file
 ```
 sudo podman stop hello-nginx
 sudo podman rm hello-nginx
 sudo podman container restore --import=/tmp/backup.tar
 ```
 
-### Verify data does not lost in /tmp/ folder
+#### Verify data does not lost in /tmp/ folder
 
 ```
 $ sudo podman exec -it hello-nginx ls /tmp/test-01

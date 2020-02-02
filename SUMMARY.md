@@ -13,7 +13,7 @@ Container
 Monitoring
 ----------
 
-- [Splunk-connect-for-k8s](05-Monitoring/splunk-connect/01-introduction.adoc)
+- [Splunk-connect-for-k8s](05-Monitoring/splunk-connect/01-introduction.md)
   - [Logging setting](05-Monitoring/splunk-connect/02-logging-setting.md)
   - [Metrics setting](05-Monitoring/splunk-connect/03-metrics-setting.md)
   - [Objects setting](05-Monitoring/splunk-connect/04-objects-setting.md)

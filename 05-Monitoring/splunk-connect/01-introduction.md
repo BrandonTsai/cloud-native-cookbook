@@ -9,6 +9,7 @@ Architecture
 -------------
 
 Splunk-connect-for-kubernetes contains 3 componenets:
+
 | Component | Usage |
 | --------- | ------ |
 | logging   | To collect container logs. |
@@ -31,7 +32,7 @@ Splunk Setting
 
 Create new app "kubernetes" or using exist app
 
-Note: The app must be 'visible' to be able to add indexes to it.
+> Note: The app must be 'visible' to be able to add indexes to it.
 
 ### Create Splunk Indexes
 

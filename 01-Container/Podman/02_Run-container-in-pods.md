@@ -1,10 +1,10 @@
-Podman - Part II :  Run a Pod 
+Podman - Part II :  Run a Pod
 ==============================
 
 Pods
 -----
 
-The Pod concept was introduced by [Kubernetes](https://kubernetes.io/docs/concepts/workloads/pods/pod/). A pods is a group of containers that operate together. podman use the similar concept to manage a group of containers on local server. All containers inside the pod share the same network namespace, so they can easily talk to each other over localhost without the need to export any extra ports. You can refer [Podman: Managing pods and containers in a local container runtime](https://developers.redhat.com/blog/2019/01/15/podman-managing-containers-pods/) for more details about the technicals that podman used. In this artical, we will focus on how to run and manage pods on local server.
+The Pod concept was introduced by [Kubernetes](https://kubernetes.io/docs/concepts/workloads/pods/pod/). A pod is a group of containers that operate together. Podman uses a similar concept to manage a group of containers on a local server. All containers inside the pod share the same network namespace, so they can easily talk to each other over the localhost without the need to export any extra ports. You can refer [Podman: Managing pods and containers in a local container runtime](https://developers.redhat.com/blog/2019/01/15/podman-managing-containers-pods/) for more details about the technicals that Podman used. In this article, we will focus on how to run and manage pods on the local server.
 
 ### Create pod manually
 
@@ -18,8 +18,8 @@ And then add a container to a pod
 sudo podman run -dt --pod my-app -v /opt/http:/usr/share/nginx/html:ro --security-opt="seccomp=unconfined" --name hello-nginx nginx
 ```
 
-Notices that you can not run a container which binding port to a container that run in a pod.
-you have to bind the port to the pod instead. And there is an issue when you try to export multiple port in a pods.
+Notices that you can not run a container that binding port to a container that runs in a pod.
+you have to bind the port to the pod instead. And there is an issue when you try to export multiple ports in a pod.
 
 you can list all pods by `podman pod ps`
 ```
@@ -49,12 +49,12 @@ cacdc75990b0  docker.io/library/nginx:latest  nginx -g daemon o...  4 minutes ag
 ```
 
 
-### Create Pod by kubernetes style yaml file.
+### Create Pod by Kubernetes style YAML file.
 
 https://mkdev.me/en/posts/dockerless-part-3-moving-development-environment-to-containers-with-podman
 
-podman support setting a pod via Kubernetes-compatible pod definition yaml file.
-And you can mount volume by useing [hostPath](https://kubernetes.io/docs/concepts/storage/volumes/#hostpath)
+Podman support setting a pod via Kubernetes-compatible pod definition YAML file.
+And you can mount a volume by using [hostPath](https://kubernetes.io/docs/concepts/storage/volumes/#hostpath)
 
 
 ```yaml
@@ -106,7 +106,7 @@ spec:
         type: Directory
 ```
 
-To create a new pod with yaml file
+To create a new pod with YAML file
 ```
 $ sudo podman play kube ./my-app.yaml
 ```
@@ -121,12 +121,12 @@ CONTAINER ID  IMAGE                           COMMAND               CREATED     
 42c150972ddb  k8s.gcr.io/pause:3.1                                  2 minutes ago  Up 2 minutes ago              0.0.0.0:8001-8002->8001-8002/tcp  4ae6b24effb5-infra
 ```
 
-> Notices that all the containers in a pod will share the same local ip 127.0.0.1, they must running on different ports, otherwise some container will fail to start due to the port conflict.
+> Notices that all the containers in a pod will share the same local IP 127.0.0.1, they must be running on different ports, otherwise, some container will fail to start due to the port conflict.
 
 
-Conclution
+Conclusion
 -----------
 
-The ability for Podman to handle Kubernetes-compatible pod deployment is a clear differentiator to other container runtimes. For the kubernetes users, they should feel familiar to implement the YAML file to manage a group of containers locally.
+The ability for Podman to handle Kubernetes-compatible pod deployment is a clear differentiator to other container runtimes. For the Kubernetes users, they should feel familiar to implement the YAML file to manage a group of containers locally.
 
-However, compare to docker-compose, Podman Pod can not be used to build multiple images at the same time. There is a third party tool [podman-compose](https://github.com/muayyad-alsadi/podman-compose) that might bring this functionality. But I would sugget implement a script for building images and use Podman Pod for containers management.
+However, compare to docker-compose, Podman Pod can not be used to build multiple images at the same time. There is a third-party tool [podman-compose](https://github.com/muayyad-alsadi/podman-compose) that might bring this functionality. But I would suggest implementing a script for building images and use Podman Pod for containers management.
