@@ -37,7 +37,7 @@ buffer:
   flush_thread_burst_interval: 0.01
   overflow_action: block
   retry_forever: true
-  retry_wait: 10
+  retry_wait: 30
   compress: gzip
 ```
 

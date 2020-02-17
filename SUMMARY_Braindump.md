@@ -24,7 +24,7 @@ Introduction
 - Set up
   - minikube/minishift
   - eksctl
-  - Rancher labs
+  - (Review) [Rancher labs](02-Introduction/Review_Rancherlab.md)
   - Openshift 4 on AWS
 - cli tools
   - Enabling shell autocompletion
@@ -44,7 +44,8 @@ Beginner
 - StatefulSets
 - Health Checks
 - Quota and LimitRange
- - (Review) https://sysdig.com/blog/kubernetes-pod-evicted/
+  - https://sysdig.com/blog/kubernetes-pod-evicted/
+  - https://sysdig.com/blog/kubernetes-limits-requests/
 - Autoscaling: HPA & CA
 - RBAC
 - Assigning Pods to Nodes
@@ -84,5 +85,5 @@ CI/CD
 -----
 
 - Jenkins
-  - "In-process Script Approval" in Jenkins & how to automatic approve.
+  - "In-process Script Approval" in Jenkins & how to automatically approve.
 - Spinnaker
