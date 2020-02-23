@@ -124,11 +124,8 @@ If the node runs out of disk, it will try to free docker space with a fair chanc
 
 Because Openshift limits are per container, not per pod. So don't waste time on them if you have performance issue.
 
-
 Ideally, the container should usage exactly the amount of resource it requested.
-
 If your usage is much lower than your request, you are waste money and it would be too hard to allocate new pods.
-
 if it is higher, you are risking performance issue in the nodes
 
 
@@ -136,8 +133,8 @@ if it is higher, you are risking performance issue in the nodes
 ## How do developer know how many resource they need for each container?
 
 
-Run "docker stats" on local development to understand CPU/Memory requests per container
-Do performance test in UAT environment to get the value of CPU/Memory limits
+- Run "docker stats" on local development to understand CPU/Memory requests per container
+- Do performance test in UAT environment to get the value of CPU/Memory limits
 
 
 ## Reference:
