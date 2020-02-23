@@ -3,7 +3,7 @@
 The applications were typically run standalone in a VM and use all of the resource.
 The operators and developers need to choose the size of the VM for running the application.
 But in Openshift, the pods/containers can be running on any machine which requires sharing the resources with others.
-That is where the QoS (Quality of Service Classes) and Resource Quotas comes in. 
+That is where the QoS (Quality of Service Classes) and Resource Quota comes in. 
 
 
 
