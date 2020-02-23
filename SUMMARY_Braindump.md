@@ -43,9 +43,7 @@ Beginner
 - PVC, PV
 - StatefulSets
 - Health Checks
-- Quota and LimitRange
-  - https://sysdig.com/blog/kubernetes-pod-evicted/
-  - https://sysdig.com/blog/kubernetes-limits-requests/
+- [Quota and LimitRange](03-Beginner/ResourceManage/quota.md)
 - Autoscaling: HPA & CA
 - RBAC
 - Assigning Pods to Nodes
@@ -67,6 +65,12 @@ Intermediate
 - Vault
 - KubeFed && Razee
 - AWS X-Ray
+
+CLuster Admin
+------------
+- Managing TLS Certs
+- etcd cluster
+
 
 Monitoring
 ----------
