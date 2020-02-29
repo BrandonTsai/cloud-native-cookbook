@@ -38,7 +38,7 @@ Beginner
 - Pod and Deployment
 - Service
 - Ingress Controller
-- Configmap
+- ConfigMap
 - Secrets
 - PVC, PV
 - StatefulSets

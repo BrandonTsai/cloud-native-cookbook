@@ -10,3 +10,4 @@ Blog:
   - [Metrics setting](05-Monitoring/splunk-connect/03-metrics-setting.md)
   - [Objects setting](05-Monitoring/splunk-connect/04-objects-setting.md)
   - [Splunk dashboard example](05-Monitoring/splunk-connect/05-splunk-dashboard.md)
+- [K8S Resource Management - QoS and Quota](03-Beginner/ResourceManage/quota.md)

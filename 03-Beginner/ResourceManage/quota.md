@@ -1,8 +1,6 @@
 
 
-The applications were typically run standalone in a VM and use all of the resources.
-The operators and developers need to choose the size of the VM for running the application.
-But in Kubernetes, the pods/containers can be running on any machine which requires sharing the resources with others.
+The applications were typically run standalone in a VM and use all of the resources. The operators and developers need to choose the size of the VM for running the application. But in Kubernetes, the pods/containers can be running on any machine which requires sharing the resources with others.
 That is where the QoS (Quality of Service Classes) and Resource Quota comes in.
 
 
@@ -10,8 +8,6 @@ That is where the QoS (Quality of Service Classes) and Resource Quota comes in.
 ## Resource Request and Limits
 When you create a pod for your application, you can set requests and limits for CPU and memory for every container inside.
 Properly setting these values is the way to instruct Kubernetes on how to manage your applications.
-
-
 
 For example,
 ```yaml
@@ -78,13 +74,16 @@ A limit range is a policy to constrain resources by Pod or Container in a namesp
 
 Make sure all nodes are in "Ready" state
 
+### Pod Status
+
+Make sure no pod is in "Pending" Status
 
 
-### Percentage of resource (CPU/Memory/Disk) allocated from the total available resource in the cluster
+### Percentage of resource (CPU/Memory) allocated from the total available resource in the cluster
 
 A good warning threshold would be (n-1)/n*100, where n is the number of nodes.
 
-Over this threshold, you wouldn't be able to reallocate your workloads in the rest of the nodes.
+Over this threshold, you may not be able to reallocate your workloads in the rest of the nodes.
 
 
 
@@ -100,16 +99,15 @@ A warning threshold to notify the administrator that this node may have the issu
   - Check the "Eviction Policies" setting. Make sure alerts have triggered before reaching the eviction-hard thresholds.
 
 
-### The CPU and Memory Usage/Request/Limit vs Capacity in the node
+### The CPU and Memory Request vs Capacity in the node
 
 Add the following warning thresholds to notify the administrator that this node may not able to allocate new pods.
 
-- Less than 200m CPU can be allocated to CPU Request/Limits
-- Less than 200Mi Memory can be allocated to Memory Request/Limits
+- Less than 10% CPU can be allocated to CPU Request
+- Less than 10% Memory can be allocated to Memory Request
 
 
 If n-1 nodes can not allocate new pods, then it is time to scale up or check the CPU/Memory requests are too high or not.
-
 
 
 ### Disk Space in the node
@@ -128,13 +126,6 @@ if it is higher, you are risking the performance issue in the nodes
 
 
 
-## How do a developer know how many resources they need for each container?
-
-- Run "docker stats" on local development to understand CPU/Memory requests per container
-- Do the  test in UAT environment to get the value of CPU/Memory limits
-
-
-
 ## Conclution
 
 It is important to make sure requests and limits are declared and tested before deploying to production namespace. Cluster admin can set up namespace quota to enforce all of the workloads in the namespace to have a request and limit in every container. A good configuration of requests and limits will allow the application much stable.
@@ -143,5 +134,7 @@ Appropriate monitoring and alerts will help the cluster admin to reduce the wast
 
 
 ## Reference:
-- https://docs.openshift.com/container-platform/3.11/admin_guide/out_of_resource_handling.html
-- https://docs.openshift.com/container-platform/3.11/admin_guide/overcommit.html#qos-classes
+
+- https://kubernetes.io/docs/concepts/policy/resource-quotas/
+- https://kubernetes.io/docs/tasks/configure-pod-container/quality-service-pod/
+- https://kubernetes.io/docs/tasks/administer-cluster/out-of-resource/
