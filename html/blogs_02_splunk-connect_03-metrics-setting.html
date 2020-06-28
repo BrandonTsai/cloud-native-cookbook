@@ -1,0 +1,88 @@
+<html>
+<head>
+  <style>
+  table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+  th, td {
+    padding: 15px;
+    text-align: left;
+  }
+  table#t01 {
+    width: 100%;
+    background-color: #f1f1c1;
+  }
+  h2 {
+    margin-top: 35px;
+  }
+  h3, h4 {
+    margin-top: 25px;
+  }
+  </style>
+</head>
+<body>
+  
+<h2>Prerequisites</h2>
+<p>Download the lastest Helm package from <a href="https://github.com/splunk/splunk-connect-for-kubernetes">Splunk-connect-for-kubernetes</a>.</p>
+<h2>Update values.yaml for metrics</h2>
+<p>The minimal value example:</p>
+<pre class="codehilite"><code class="language-YAML">splunk:
+  hec:
+    host: &lt; splunk_host &gt;
+    port: 8088
+    token: &lt; splunk_hec_metrics_token &gt;
+    indexName: &lt; splunk_metrics_indexname &gt;</code></pre>
+
+
+<p><strong>Optional:</strong> Customize filter setting</p>
+<p>Please refer <a href="https://github.com/splunk/fluent-plugin-kubernetes-metrics/blob/develop/metrics-information.md">metrics-information</a> for all supported metrics</p>
+<p>It is recommand to customize the fluentd setting to collect minimal metrics that are required for monitoing.</p>
+<pre class="codehilite"><code class="language-YAML">customFilters:
+  SetContainerFilter:
+    tag: kube.container.**
+    type: grep
+    body: |
+        &lt;regexp&gt;
+                key metric_name
+                pattern /(cpu.usage_rate|cpu.limit|memory.usage|memory.limit)/
+              &lt;/regexp&gt;
+  SetPodFilter:
+    tag: kube.pod.**
+    type: grep
+    body: |
+        &lt;regexp&gt;
+                key metric_name
+                pattern /(network.rx_bytes|network.tx_bytes|network.rx_errors|network.tx_errors|cpu.load.average.10s|cpu.usage_rate|cpu.limit|memory.usage|memory.limit|memory.available_bytes|volume.available_bytes|volume.used_bytes)/
+              &lt;/regexp&gt;
+  SetNamespaceFilter:
+    tag: kube.namespace.**
+    type: grep
+    body: |
+        &lt;regexp&gt;
+                key metric_name
+                pattern /(usage|limit)/
+              &lt;/regexp&gt;
+  SetNodeFilter:
+    tag: kube.node.**
+    type: grep
+    body: |
+        &lt;regexp&gt;
+                key metric_name
+                pattern /(network.rx_bytes|network.tx_bytes|network.rx_errors|network.tx_errors|cpu.usage_rate|memory.usage|memory.capacity|memory.available_bytes)/
+              &lt;/regexp&gt;</code></pre>
+
+
+<h2>Deplopy to Kubernetes Cluster</h2>
+<p>You can deploy to kubernetes cluster via helm directly.
+Or generate kubernetes yaml files via helm template command and then deploy via kubectl.</p>
+<pre class="codehilite"><code class="language-bash">helm template --name-template=k8s --namespace splunk-connect --output-dir ${output_folder} splunk-kubernetes-metrics/
+
+kubectl apply -f ${output_folder}/splunk-kubernetes-metrics/templates/</code></pre>
+
+
+<h2>Verify on Splunk</h2>
+<p>Following splunk search can be used to check the supported dimensions of a metric:</p>
+<pre class="codehilite"><code>| mcatalog values(_dims) WHERE index=&quot;*_metrics&quot; AND metric_name=&quot;kube.pod.cpu.load.average.10s&quot;</code></pre>
+</body>
+</html>

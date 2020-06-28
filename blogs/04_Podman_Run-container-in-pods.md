@@ -1,5 +1,5 @@
-Podman - Part II :  Run a Pod
-==============================
+Podman :  Run a Pod
+=====================
 
 Pods
 -----

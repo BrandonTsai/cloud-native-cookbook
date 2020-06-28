@@ -16,3 +16,6 @@ _book
 *.mobi
 *.pdf
 
+# My draft
+.draft
+
