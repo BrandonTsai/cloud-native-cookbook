@@ -19,6 +19,7 @@ spec:
   containers:
   - name: nginx
     image: nginx:1.14.2
+    imagePullPolicy: Always
     ports:
     - containerPort: 80
 ```
