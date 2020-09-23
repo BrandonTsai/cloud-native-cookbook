@@ -3,6 +3,8 @@ stages:
 
 convert:
   stage: convert
+  only:
+    - tags
   script:
   - apt-get update -qy
   - apt-get install -y python-dev python-pip
