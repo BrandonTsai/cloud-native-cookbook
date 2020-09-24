@@ -1,36 +1,22 @@
-apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-deployment
+  name: nginx
+  labels:
+    app: nginx
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app: nginx
-  replicas: 1
   template:
     metadata:
       labels:
-        ok: brandon
         app: nginx
     spec:
       containers:
       - name: nginx
-        image: nginx:1.14.2
+        image: quay.io/brandon_tsai/testlab:1
+        imagePullPolicy: Always
         ports:
-        - containerPort: 80
-
-
-
-# my-first-pod.yaml
-apiVersion: v1
-kind: Pod
-metadata:
-  name: nginx-pod
-  labels:
-    app: nginx
-spec:
-  containers:
-  - name: nginx
-    image: nginx:1.14.2
-    ports:
-    - containerPort: 3000
+        - containerPort: 8080
