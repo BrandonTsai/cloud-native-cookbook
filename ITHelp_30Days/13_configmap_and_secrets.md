@@ -1,6 +1,9 @@
+不能說的 Secret 跟 ConfigMap
+===========================
+
 Overview
 --------
-Many applications require configuration using some combination of configuration files and environment variables. 
+Many applications require configuration using some combination of configuration files and environment variables.
 These configuration files and environment variables should be decoupled from docker image content  in order to keep containerized applications portable.
 In Kubernetes based platform, we could use `ConfigMap` and `Secret` object to setting configuration data separately from application code.
 
@@ -10,9 +13,9 @@ This article will give a overview of ConfigMap Usage.
 Create ConfigMap From Directories/file
 ---------------------------------------
 
-Hint: 
+Hint:
 
-- file can be binary 
+- file can be binary
 - can not create configmap from nested floders/subfolders
 - Use "--dry-run -o yaml " in pipeline, for example, `oc create configmap nginx-config --from-file=configs/nginx -n gts-lab-dev --dry-run -o yaml | oc apply -f -`
 

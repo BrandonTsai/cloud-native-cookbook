@@ -180,6 +180,6 @@ Cache Directory: /Users/brandon/.crc/cache
 
 
 結論
------1
+-----
 
 由於 Kubernetes 是構成 OpenShift 的基礎，因此可以在兩者之間找到許多共同點。 儘管 Kubernetes 是開放且快速發展的平台，但 OpenShift 關注不同企業的需求，並根據這些企業級的需求應運而生，讓更多企業願意接納 Kubernetes 對應的平台跟服務。 Kubernetes 跟 OpenShift 可以說是相輔相成。
