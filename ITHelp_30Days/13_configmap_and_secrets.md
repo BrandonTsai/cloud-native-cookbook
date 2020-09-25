@@ -139,3 +139,20 @@ How OpenShift handle the secrets issue.
 ------------------------------------------
 
 
+From the case description, I understand that you are looking to leverage resources encryption, in particular secret encryption at the datastore layer. By default, etcd data is not encrypted in OpenShift Container Platform. You can enable etcd encryption for your cluster to provide an additional layer of data security. 
+
+When you enable etcd encryption, the following OpenShift API server and Kubernetes API server resources are encrypted:
+
+    Secrets
+    ConfigMaps
+    Routes
+    OAuth access tokens
+    OAuth authorize tokens
+
+You can get more insights on the same after going through this [documentation](https://docs.openshift.com/container-platform/4.5/security/encrypting-etcd.html#enabling-etcd-encryption_encrypting-etcd). 
+
+https://docs.openshift.com/container-platform/4.5/security/encrypting-etcd.html#enabling-etcd-encryption_encrypting-etcd
+
+K8S
+https://kubernetes.io/docs/tasks/administer-cluster/encrypt-data/
+
