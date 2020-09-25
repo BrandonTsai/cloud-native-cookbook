@@ -1,0 +1,187 @@
+When do we need PV?
+---------------------
+- massive data generate by app you want to keep when pod recreated
+- large files that are not suitable to keep in configMap/Secrets because configMap and Secrets are keeped in etcd Cluster
+
+Storage Class, PV and PVC
+----------
+
+
+A PersistentVolume (PV) is a piece of storage in the cluster that has been manually provisioned by an administrator, or dynamically provisioned by Kubernetes using a StorageClass. A PersistentVolumeClaim (PVC) is a request for storage by a user that can be fulfilled by a PV. PersistentVolumes and PersistentVolumeClaims are independent from Pod lifecycles and preserve data through restarting, rescheduling, and even deleting Pods.
+
+Reclaim policy 
+--------------
+
+The reclaim policy of a PersistentVolume tells the cluster what to do with the volume after it is released. A volume’s reclaim policy can be Retain, Recycle, or Delete.
+
+Retain reclaim policy allows manual reclamation of the resource for those volume plug-ins that support it.
+
+Recycle reclaim policy recycles the volume back into the pool of unbound persistent volumes once it is released from its claim.
+
+The Recycle reclaim policy is deprecated in OpenShift Container Platform 4. Dynamic provisioning is recommended for equivalent and better functionality.
+
+Delete reclaim policy deletes both the PersistentVolume object from OpenShift Container Platform and the associated storage asset in external infrastructure, such as AWS EBS or VMware vSphere.
+
+Dynamically provisioned volumes are always deleted.
+
+
+Access modes
+-----------
+| Access Mode| CLI abbreviation | Description |
+| ReadWriteOnce | RWO | The volume can be mounted as read-write by a single node. |
+| ReadOnlyMany | ROX | The volume can be mounted as read-only by many nodes.|
+| ReadWriteMany | RWX | The volume can be mounted as read-write by many nodes. |
+
+refer https://docs.openshift.com/container-platform/4.5/storage/understanding-persistent-storage.html
+
+
+Example 
+---------------------
+
+In our Client, we use "VMware vSphere volumes" by default.
+
+
+```YAML
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  labels:
+    app: postgres-db
+  name: postgres-db
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+  storageClassName: vsphere-standard
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+  labels:
+    app: postgres-db
+  name: postgres-db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres-db
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: postgres-db
+    spec:
+      containers:
+      - env:
+        - name: POSTGRESQL_USER
+          value: reference_data_user
+        - name: POSTGRESQL_DATABASE
+          value: payments-testdb
+        - name: POSTGRESQL_PASSWORD
+          value: testing
+        - name: POSTGRESQL_ADMIN_PASSWORD
+          value: testing
+        image: quay-ap.windmill.local/gts-base-images/postgresql-96-rhel7:1-52-release
+        imagePullPolicy: IfNotPresent
+        name: postgres-db
+        ports:
+        - containerPort: 5432
+          name: postgres-db
+          protocol: TCP
+        volumeMounts:
+        - mountPath: /var/lib/postgresql/data
+          name: postgresql
+      restartPolicy: Always
+      volumes:
+      - name: postgresql
+        persistentVolumeClaim:
+          claimName: postgres-db
+
+```
+
+
+apply this yaml file
+
+```
+$ oc apply -f /tmp/pvc.yaml 
+persistentvolumeclaim/postgres-db unchanged
+deployment.extensions/postgres-db created
+
+
+$ oc get pods
+NAME                           READY     STATUS    RESTARTS   AGE
+postgres-db-754f6dc5c7-ck8nf   1/1       Running   0          9m
+
+$ oc get pvc
+NAME          STATUS    VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS       AGE
+postgres-db   Bound     pvc-e9c12dab-fed2-11ea-9a08-0050569e649e   5Gi        RWO            vsphere-standard   9m
+
+$ oc get pv pvc-e9c12dab-fed2-11ea-9a08-0050569e649e
+NAME                                       CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS    CLAIM                     STORAGECLASS       REASON    AGE
+pvc-e9c12dab-fed2-11ea-9a08-0050569e649e   5Gi        RWO            Retain           Bound     gts-lab-dev/postgres-db   vsphere-standard             10m
+```
+
+
+What Happen if we scale up deployment to 2 pods?
+--------------
+
+
+
+```
+$ oc scale deploy postgres-db --replicas=2 
+deployment.extensions/postgres-db scaled
+
+$ oc get pods
+NAME                           READY     STATUS              RESTARTS   AGE
+postgres-db-754f6dc5c7-7khnc   0/1       ContainerCreating   0          8m
+postgres-db-754f6dc5c7-ck8nf   1/1       Running             0          42m
+```
+
+That is because our storage Class is vSphere, it does not support ReadWriteMany or ReadOnlyMany mode.
+
+```
+Events:
+  Type     Reason              Age              From                                     Message
+  ----     ------              ----             ----                                     -------
+  Normal   Scheduled           8m               default-scheduler                        Successfully assigned gts-lab-dev/postgres-db-754f6dc5c7-7khnc to sgvlapaacdopa02.windmill.local
+  Warning  FailedAttachVolume  8m               attachdetach-controller                  Multi-Attach error for volume "pvc-e9c12dab-fed2-11ea-9a08-0050569e649e" Volume is already used by pod(s) postgres-db-754f6dc5c7-ck8nf
+  Warning  FailedMount         1m (x3 over 6m)  kubelet, sgvlapaacdopa02.windmill.local  Unable to mount volumes for pod "postgres-db-754f6dc5c7-7khnc_gts-lab-dev(c38af83c-fed7-11ea-b1e4-0050569e6f56)": timeout expired waiting for volumes to attach or mount for pod "gts-lab-dev"/"postgres-db-754f6dc5c7-7khnc". list of unmounted volumes=[postgresql]. list of unattached volumes=[postgresql default-token-5bblj
+```
+
+
+
+Clean up
+---------------------------------------
+
+```
+$ oc delete deploy postgres-db
+deployment.extensions "postgres-db" deleted
+
+$ oc delete pvc postgres-db
+persistentvolumeclaim "postgres-db" deleted
+
+$ oc get pvc               
+No resources found.
+
+$ oc get pv pvc-e9c12dab-fed2-11ea-9a08-0050569e649e
+NAME                                       CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS     CLAIM                     STORAGECLASS       REASON    AGE
+pvc-e9c12dab-fed2-11ea-9a08-0050569e649e   5Gi        RWO            Retain           Released   gts-lab-dev/postgres-db   vsphere-standard             53m
+```
+
+The PV still exist, because our reclaimPolicy of storageclass vsphere-standard is Retain
+we need to delete this PV manually.
+
+
+
+
+
+
+
+
+
+
