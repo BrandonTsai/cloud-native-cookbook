@@ -178,6 +178,10 @@ we need to delete this PV manually.
 
 
 
+Can I resize the PV as Data growth with time?
+--------------------------------------------
+It depends on your storage provider, and you also need some extra work for this feature. please refer  https://docs.openshift.com/container-platform/4.5/storage/expanding-persistent-volumes.html
+
 
 
 
