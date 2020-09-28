@@ -60,30 +60,15 @@ The controller for the Service selector continuously scans for Pods that match i
 The default protocol for Services is TCP; you can also use any other supported protocol.
 
 
-**Discovering services**
+**Discovering services via Built-in DNS**
 
+ If the service is deleted and recreated, a new IP address can be assigned to the service, and requires the frontend pods to be recreated in order to pick up the updated values for the service IP environment variable. Additionally, the backend service has to be created before any of the frontend pods to ensure that the service IP is generated properly, and that it can be provided to the frontend pods as an environment variable.
 
-
-Environment variables
-When a Pod is run on a Node, the kubelet adds a set of environment variables for each active Service. It supports both Docker links compatible variables (see makeLinkVariables) and simpler {SVCNAME}_SERVICE_HOST and {SVCNAME}_SERVICE_PORT variables, where the Service name is upper-cased and dashes are converted to underscores.
-
-For example, the Service redis-master which exposes TCP port 8080 and has been allocated cluster IP address 10.0.0.11, produces the following environment variables:
+OpenShift Container Platform has a built-in DNS so that the services can be reached by the service DNS as well as the service IP/port. 
+In other pods, they can access the service via this build-in DNS service, for example:
 
 ```
-export NGINX_PORT="tcp://172.25.156.73:80"
-export NGINX_PORT_80_TCP="tcp://172.25.156.73:80"
-export NGINX_PORT_80_TCP_ADDR="172.25.156.73"
-export NGINX_PORT_80_TCP_PORT="80"
-export NGINX_PORT_80_TCP_PROTO="tcp"
-export NGINX_SERVICE_HOST="172.25.156.73"
-export NGINX_SERVICE_PORT="80"
-
-```
-
-in other pods, they can access the service via the ENVIRONMENT VARIABLE, for example
-
-```
-$ curl http://${NGINX_SERVICE_HOST}
+$ curl http://nginx
 <html>
 <head>
 	<title>Test NGINX passed</title>
