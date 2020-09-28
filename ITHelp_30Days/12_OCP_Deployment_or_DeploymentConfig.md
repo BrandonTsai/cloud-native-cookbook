@@ -6,6 +6,9 @@ Deployment vs DeploymentConfig
 -----------------------
 
 OpenShift provide two similar but different methods for fine-grained management over common user applications - Deployment & DeploymentConfig.
+They allows you to describe an application’s life cycle, such as which images to use for the app, the number of pods there should be, and the way in which they should be updated. 
+
+
 
 | | Deployment | DeploymentConfig |
 |--|------------|------------------|

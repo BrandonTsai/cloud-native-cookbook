@@ -1,4 +1,5 @@
-不能說的 Secret 跟 ConfigMap
+
+我不是針對誰，我是說在座各位都應該用 ConfigMaps 及 Secrets
 ===========================
 
 Overview

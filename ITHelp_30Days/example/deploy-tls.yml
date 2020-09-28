@@ -21,3 +21,15 @@ spec:
         ports:
         - containerPort: 8080
         - containerPort: 8443
+        volumeMounts:
+        - name: nginx-tls
+          mountPath: /opt/app-root/tls
+        - name: nginx-config
+          mountPath: /opt/app-root/etc/nginx.d/
+      volumes:
+        - name: nginx-tls
+          secret:
+            secretName: nginx-tls
+        - name: nginx-config
+          configMap:
+            name: nginx-config
