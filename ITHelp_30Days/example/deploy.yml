@@ -18,6 +18,8 @@ spec:
       - name: nginx
         image: quay.io/brandon_tsai/testlab:1
         imagePullPolicy: Always
+        command: ["tail"]
+        args: ["-f", "/dev/null"]
         ports:
         - containerPort: 8080
         - containerPort: 8443
