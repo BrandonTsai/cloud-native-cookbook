@@ -54,9 +54,59 @@ The Grafana analytics platform provides dashboards for analyzing and visualizing
 
 
 
+
+
+You can check these components in "openshift-monitoring" namespaces.
+
+
+```
+$ oc project openshift-monitoring
+$ oc get deploy
+NAME                          READY   UP-TO-DATE   AVAILABLE   AGE
+cluster-monitoring-operator   1/1     1            1           110d
+grafana                       1/1     1            1           110d
+kube-state-metrics            1/1     1            1           110d
+openshift-state-metrics       1/1     1            1           110d
+prometheus-adapter            2/2     2            2           110d
+prometheus-operator           1/1     1            1           110d
+thanos-querier                2/2     2            2           110d
+```
+
+Monitoring Walkthrough
+-------------------------
+
+With the integration of Prometheus and Grafana, OpenShift allow system admin from the OpenShift Web UI directly.
+
+1. Check alerts in directly in Monitoring > Metrics page
+
+2. Do Metrics Query directly in Monitoring > Metrics page
+
+
+3. Check Dashboard from in Monitoring > Dashboards page
+
+
+
+
+
+Besides, you still can go to the original Prometheus and Grafana Web UI and login to OpenShift Account.
+
+1. 
+
+2. 
+
+
+
+
+
+
+
+
+
+
 Notes
 -----
 
 - You can not change the default Grafana dashboard and alert rules in openshift-monitoring namespaces, it is managed by Cluster Monitoring Operator. These setting will be overwrite by Cluster Monitoring Operator. 
 
-- You have to deploy and use your own Grafana for Application Monitoring Dashboard.
+- The Grafana instance shipped within OpenShift Container Platform Monitoring is read-only and displays only infrastructure-related dashboards.
+
