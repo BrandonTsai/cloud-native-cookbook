@@ -105,7 +105,8 @@ spec:
         - name: nginx-ssl-key
           mountPath: /opt/app-root/etc/nginx.d/ssl
         - name: nginx-config
-          mountPath: /opt/app-root/etc/nginx.d/
+          mountPath: /opt/app-root/etc/nginx.d/nginx-app.conf
+          subPath: nginx-app.conf
         - name: nginx-html
           mountPath: /opt/app-root/src
         - name: nginx-html-icons
@@ -117,6 +118,9 @@ spec:
         - name: nginx-config
           configMap:
             name: nginx-config
+            items:
+            - key: nginx-app.conf
+              path: nginx-app.conf
         - name: nginx-html
           configMap:
              name: nginx-html
