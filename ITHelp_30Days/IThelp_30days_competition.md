@@ -38,15 +38,18 @@ From Docker Container to RedHat OpenShift
 7. OpenShift: container-security-operator with Quay
 8. OCP: Buildin Prometheus Operator Introduction
 9. OCP: How to monitor external node via Prometheus on OpenShift?
-10. OCP: Buildin Grafana & how to set up dashboard.
+
+10. OCP: Custom Grafana via Operator & Set up Dashboard.
 11. Loki Trial: https://grafana.com/docs/loki/latest/installation/
-
 12. Splunk-connect: introduction (version 1.4.3) and installation by Helm.
-13. Falco? kube-bench?
-14. Backup/Recovery
+13. kube-bench?
+14. Falco? 
 15. Conclusion of 30 days challenge ( What have coverd and what did not covered )
+  - [Red Hat Advanced Cluster Mngmnt](https://www.youtube.com/watch?v=lw6hIG2hmIs&list=PLj6h78yzYM2O1wlsM-Ma-RYhfT5LKq0XC&index=147)
 
+Backup/Recovery?
 
+https://www.youtube.com/watch?v=OClSwxhsspA&list=PLj6h78yzYM2NDs-iu8WU5fMxINxHXlien&index=61
 
 
 Several third-party tools support Helm chart creation such as Draft(https://draft.sh/). Local Helm development is also supported by garden.io and/or skaffold. Check your favorite tool for native Helm support.

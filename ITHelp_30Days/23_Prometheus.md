@@ -110,3 +110,4 @@ Notes
 
 - The Grafana instance shipped within OpenShift Container Platform Monitoring is read-only and displays only infrastructure-related dashboards.
 
+To solve this issue we could use the Grafana Operator from OperatorHub or Grafana Helm Chart.
