@@ -113,35 +113,30 @@ splunk:
 
 ``` YAML
 buffer:
-  "@type": memory
-  total_limit_size: 8000m
-  chunk_limit_size: 8m
-  chunk_limit_records: 10000000000
+  '@type': memory
+  total_limit_size: 600m
+  chunk_limit_size: 200m
+  chunk_limit_records: 100000
   flush_at_shutdown: true
   flush_interval: 3s
-  flush_thread_count: 20
+  flush_thread_count: 4
   flush_thread_interval: 0.1
-  flush_thread_burst_interval: 0.01
-  overflow_action: block
+  flush_thread_burst_interval: 0.1
+  overflow_action: drop_oldest_chunk
   retry_forever: true
-  retry_wait: 30
-  compress: gzip
+  retry_wait: 60
 ```
 
 **Optional:** Customize filter setting
 ```YAML
 customFilters:
-  SetNamespaceFilter:
+  SetIndexFilter:
     tag: "**"
     type: grep
     body: |
         <exclude>
-                  key namespace
-                  pattern /(kube-system)/
-                </exclude>
-                <exclude>
                   key sourcetype
-                  pattern /(fluentd:monitor-agent|kube:container:calico-node)/
+                  pattern /(fluentd:monitor-agent)/
                 </exclude>
 ```
 
