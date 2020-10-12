@@ -1,21 +1,88 @@
-Use local image
 
+
+在前篇文章中，我已經將 Grafana Operator 部署到 "brandon" 的專案空間。這篇文章將介紹如何透過 Grafana Operator 部署另一個 Grafana 並為應用程序客製化自己的 Grafana Dashboard。
+
+部署 Grafana Instance
+----
+
+從 “Installed Operators” 頁面, 選擇 “Grafana Operator，然後再點選建立新的 Grafana instance 。
+
+
+![](go01.PNG)
+
+建立新的 Grafana instance 過程中，可以修改 YAML 檔案中管理者的 username 跟 password 。然後按下 "Create"。
+
+![](go02.PNG)
+
+
+確定 Grafana Pod 的狀態是 ”running“。
+
+![](go03.PNG)
+
+
+連接到內建的 Prometheus
+----
+
+在建立 Grafana instance 時， “grafana-serviceaccount” service account 也會被建立。 我們必須 assign "cluster-monitoring-view" role 給這個 service account，讓它有權限讀取 Prometheus 的資源。
+
+```bash
+$ oc project brandon
+$ oc adm policy add-cluster-role-to-user cluster-monitoring-view -z grafana-serviceaccount
 ```
-                containers:
-                  - args:
-                      - >-
-                        --grafana-image=quay-uk.windmill.local/gts-base-images/grafana
-                      - >-
-                        --grafana-plugins-init-container-image=quay-uk.windmill.local/gts-base-images/grafana_plugins_init
-                    command:
-                      - grafana-operator
-```                    
-                    
+
+設定 Grafana Data Source
+----------------
+
+先取得 “grafana-serviceaccount” service account 的 bearer token。 
+
+```bash
+$ oc serviceaccounts get-token grafana-serviceaccount -n brandon
+```
+
+在 Grafana Operator 的頁面，點取建立新的 ”Grafana Data Source“，然後將下列 YAML貼上，並把 ${BEARER_TOKEN} 更改為剛剛取得的bearer token，然後按下 “Create“。
+
+```yaml
+apiVersion: integreatly.org/v1alpha1
+kind: GrafanaDataSource
+metadata:
+  name: prometheus-grafanadatasource
+spec:
+  datasources:
+    - access: proxy
+      editable: true
+      isDefault: true
+      jsonData:
+        httpHeaderName1: 'Authorization'
+        timeInterval: 5s
+        tlsSkipVerify: true
+      name: Prometheus
+      secureJsonData:
+        httpHeaderValue1: 'Bearer ${BEARER_TOKEN}'
+      type: prometheus
+      url: 'https://thanos-querier.openshift-monitoring.svc.cluster.local:9091'
+  name: prometheus-grafanadatasource.yaml
+```
 
 
 
+連接到 Grafana Web UI
+---------------
 
-Grafana Dashboard
+從 Networking -> Routes 頁面確認 Grafana URL，並利用之前設定的管理者帳號跟密碼登入。
+
+
+![](go11.PNG)
+
+確定我們可以查詢 prometheus 的 metrics。
+
+![](go12.PNG)
+
+
+客製化 Grafana Dashboard
+--------
+
+你可以手動從 Grafana 直接建立或建立新的 "GrafanaDashboard".
+在 Grafana Operator 的頁面，點取建立新 Grafana Dashboard，並將下列 YAML 檔貼上，然後按下 “Create“。
 
 
 ```yaml
@@ -152,3 +219,13 @@ spec:
 
 
 ```
+
+回到 Grafana Web UI，確定新的 Dashboard 有被建立。
+
+![](go13.PNG)
+
+
+Reference
+-----
+
+https://www.redhat.com/en/blog/custom-grafana-dashboards-red-hat-openshift-container-platform-4

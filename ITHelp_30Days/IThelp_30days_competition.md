@@ -38,12 +38,12 @@ From Docker Container to RedHat OpenShift
 7. OpenShift: container-security-operator with Quay
 8. OCP: Buildin Prometheus Operator Introduction
 9. OCP: How to monitor external node via Prometheus on OpenShift?
+10. OCP: Private Operator Source
+11. OCP: Dive into Grafana Operator
 
-10. OCP: Custom Grafana via Operator & Set up Dashboard.
-11. Loki Trial: https://grafana.com/docs/loki/latest/installation/
 12. Splunk-connect: introduction (version 1.4.3) and installation by Helm.
-13. kube-bench?
-14. Falco? 
+13. backup & restore -> etcd health
+14. kube-bench?
 15. Conclusion of 30 days challenge ( What have coverd and what did not covered )
   - [Red Hat Advanced Cluster Mngmnt](https://www.youtube.com/watch?v=lw6hIG2hmIs&list=PLj6h78yzYM2O1wlsM-Ma-RYhfT5LKq0XC&index=147)
 
