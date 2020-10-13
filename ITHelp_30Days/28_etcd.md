@@ -1,45 +1,34 @@
-What is etcd?
-Refer: https://medium.com/better-programming/a-closer-look-at-etcd-the-brain-of-a-kubernetes-cluster-788c8ea759a5
 
+etcd is the key-value store for OpenShift Container Platform, which persists the entire state of the cluster: its configuration, specifications, and the statuses of the running workloads.
+System administrater should Back up cluster’s etcd data regularly and store in a secure location ideally outside the OpenShift
 
-
-OpenShift documentation related to ETCD
-- https://docs.openshift.com/container-platform/3.11/admin_guide/assembly_restoring-cluster.html
-- https://docs.openshift.com/container-platform/3.11/admin_guide/assembly_replace-etcd-member.html
 
 
 
 Backing up etcd cluster
-Manually backup the etcd data on a healthy node:
+-------------
+
+
 
 ```
-ETCDCTL_API=3
-etcdctl --cert /etc/etcd/peer.crt --key /etc/etcd/peer.key --cacert /etc/etcd/ca.crt --endpoints 'gbvleqaacopm01p.windmill.local:2379,https://gbvleqaacopm02p.windmill.local:2379,https://gbvleqaacopm03p.windmill.local:2379' snapshot save  /tmp/snapshot_$(date +%Y%m%d).db
+# /usr/local/bin/cluster-backup.sh /var/home/core/backup/
+512a3e830ede6af4472474ae1ab90ac7c5fb8c9e60b20b96bbb90a30f8c8a97c
+etcdctl version: 3.3.18
+API version: 3.3
+found latest kube-apiserver-pod: /etc/kubernetes/static-pod-resources/kube-apiserver-pod-63
+found latest kube-controller-manager-pod: /etc/kubernetes/static-pod-resources/kube-controller-manager-pod-39
+found latest kube-scheduler-pod: /etc/kubernetes/static-pod-resources/kube-scheduler-pod-37
+found latest etcd-pod: /etc/kubernetes/static-pod-resources/etcd-pod-21
+Snapshot saved at /var/home/core/backup//snapshot_2020-10-13_062754.db
+snapshot db and kube resources are successfully saved to /var/home/core/backup/
 ```
 
+In this example, two files are created in the /var/home/core/backup/ directory on the master host:
 
+snapshot_<datetimestamp>.db: This file is the etcd snapshot.
 
+static_kuberesources_<datetimestamp>.tar.gz: This file contains the resources for the static Pods. If etcd encryption is enabled, it also contains the encryption keys for the etcd snapshot.
 
-Check Cluster Health
-This command will check the cluster health status
-
-```
-etcdctl -C https://10.248.150.19:2379 \
-  --ca-file=/etc/etcd/ca.crt     \
-  --cert-file=/etc/etcd/peer.crt     \
-  --key-file=/etc/etcd/peer.key cluster-health
-```
-
-List members of the ETCD cluster
-This command will list the members of the etcd cluster
-
-```
-etcdctl --cert-file=/etc/etcd/peer.crt \
-    --key-file=/etc/etcd/peer.key \
-    --ca-file=/etc/etcd/ca.crt \
-    --peers="https://172.18.1.18:2379,https://172.18.9.202:2379,https://172.18.0.75:2379" \
-    member list
-```
 
 
 
@@ -176,6 +165,17 @@ etcdctl -C https://[NODE-IP]:2379 \
   --key-file=/etc/etcd/peer.key cluster-health
 
 ````
+
+
+Refer
+------
+
+
+Refer: https://medium.com/better-programming/a-closer-look-at-etcd-the-brain-of-a-kubernetes-cluster-788c8ea759a5
+
+OpenShift documentation related to ETCD
+- https://docs.openshift.com/container-platform/3.11/admin_guide/assembly_restoring-cluster.html
+- https://docs.openshift.com/container-platform/3.11/admin_guide/assembly_replace-etcd-member.html
 
 
 
