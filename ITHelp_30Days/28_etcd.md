@@ -4,10 +4,31 @@ System administrater should Back up cluster’s etcd data regularly and store in
 
 
 
+Check Cluster health
+--------
+
+you can ssh to master node and run `etcdctl endpoint health` command
+
+```
+$ ssh -i id_rsa core@masternode1
+$ source /etc/kubernetes/static-pod-resources/etcd-certs/configmaps/etcd-scripts/etcd-common-tools
+$ source /etc/kubernetes/static-pod-resources/etcd-certs/configmaps/etcd-scripts/etcd.env
+$ etcdctl endpoint health
+https://192.168.50.10:2379 is healthy: successfully committed proposal: took = 12.932144ms
+https://192.168.50.11:2379 is healthy: successfully committed proposal: took = 14.816544ms
+https://192.168.50.12:2379 is healthy: successfully committed proposal: took = 15.857068ms
+```
+
+or you can check health via oc command
+
+```
+$ oc get etcd -o=jsonpath='{range .items[0].status.conditions[?(@.type=="EtcdMembersAvailable")]}{.message}{"\n"}'
+3 members are available
+```
+
 
 Backing up etcd cluster
 -------------
-
 
 
 ```
@@ -25,9 +46,8 @@ snapshot db and kube resources are successfully saved to /var/home/core/backup/
 
 In this example, two files are created in the /var/home/core/backup/ directory on the master host:
 
-snapshot_<datetimestamp>.db: This file is the etcd snapshot.
-
-static_kuberesources_<datetimestamp>.tar.gz: This file contains the resources for the static Pods. If etcd encryption is enabled, it also contains the encryption keys for the etcd snapshot.
+- snapshot_<datetimestamp>.db: This file is the etcd snapshot.
+- static_kuberesources_<datetimestamp>.tar.gz: This file contains the resources for the static Pods. If etcd encryption is enabled, it also contains the encryption keys for the etcd snapshot.
 
 
 
@@ -44,7 +64,14 @@ Though etcd keeps unique member IDs internally, it is recommended to use a uniqu
 1. Get the member ID of the failed member:
 
 ```
-etcdctl -C https://<surviving host IP>:2379 --ca-file=/etc/etcd/ca.crt --cert-file=/etc/etcd/peer.crt --key-file=/etc/etcd/peer.key cluster-health
+etcdctl  member list -w table
++------------------+---------+-----------------+----------------------------+----------------------------+
+|        ID        | STATUS  |      NAME       |         PEER ADDRS         |        CLIENT ADDRS        |
++------------------+---------+-----------------+----------------------------+----------------------------+
+|  38cea7b2f31b828 | started | gbvleuaacdopm10 | https://10.248.150.39:2380 | https://10.248.150.39:2379 |
+|  e478d9c72b17c7f | started | gbvleuaacdopm11 | https://10.248.150.40:2380 | https://10.248.150.40:2379 |
+| c8a14199c8670745 | started | gbvleuaacdopm12 | https://10.248.150.41:2380 | https://10.248.150.41:2379 |
++------------------+---------+-----------------+----------------------------+----------------------------+
 ```
 
 
@@ -61,117 +88,38 @@ member 9f71e4c3be9d2b7c is healthy: got healthy result from https://10.248.164.1
 2. Remove the failed member:
 
 ```
-etcdctl -C https://10.248.164.14:2379 --ca-file=/etc/etcd/ca.crt --cert-file=/etc/etcd/peer.crt --key-file=/etc/etcd/peer.key member remove e3c8143436eddd4d
+etcdctl member remove c8a14199c8670745
 ```
 
-3. On the failed etcd member
-
-Stop the etcd service by removing the etcd pod definition:
-
-```
-$ mkdir -p /etc/origin/node/pods-stopped
-$ mv /etc/origin/node/pods/etcd.yaml /etc/origin/node/pods-stopped/
-$ sudo service docker restart
-```
-
-Remove the contents of theetcddirectory
-```
-# mkdir -p /var/lib/etcd-old-data
-# mv /var/lib/etcd/* /var/lib/etcd-old-data/
-```
-
-4. Add the member back to the cluster:
-```
-# etcdctl -C https://${CURRENT_ETCD_HOST}:2379 --ca-file=/etc/etcd/ca.crt --cert-file=/etc/etcd/peer.crt --key-file=/etc/etcd/peer.key member add ${NEW_ETCD_HOSTNAME} https://${NEW_ETCD_IP}:2380
-```
-
-For example
-```
-# etcdctl -C https://10.248.164.14:2379 --ca-file=/etc/etcd/ca.crt --cert-file=/etc/etcd/peer.crt --key-file=/etc/etcd/peer.key member add gbvleqaacopm02p.windmill.local https://10.248.164.15:2380
-Added member named gbvleqaacopm02p.windmill.local with ID 4e1db163a21d7651 to cluster
- 
-ETCD_NAME="gbvleqaacopm02p.windmill.local"
-ETCD_INITIAL_CLUSTER="gbvleqaacopm01p.windmill.local=https://10.248.164.14:2380,gbvleqaacopm02p.windmill.local=https://10.248.164.15:2380,gbvleqaacopm03p.windmill.local=https://10.248.164.16:2380"
-ETCD_INITIAL_CLUSTER_STATE="existing"
-```
-
-5. On the failed etcd member, 
-
-Update the /etc/etcd/etcd.conf file, replace the following values with the values generated in the previous step:
-
-- ETCD_NAME
-- ETCD_INITIAL_CLUSTER
-- ETCD_INITIAL_CLUSTER_STATE
+3. Delete and recreate the master machine. After this machine is recreated, a new revision is forced and etcd scales up automatically.
 
 
-Start  etcd service
-```
-# mv /etc/origin/node/pods-stopped/etcd.yaml /etc/origin/node/pods/
-# sudo service docker restart
-```
+4. Verify that all etcd Pods are running properly:
 
-Wait until etcd container is running. and check the logs of the etcd container.
+In a terminal that has access to the cluster as a cluster-admin user, run the following command:
 
 ```
-/usr/local/bin/master-logs etcd etcd
+$ oc get pods -n openshift-etcd | grep etcd
+etcd-masternode0                 3/3     Running     0          16d20h
+etcd-masternode1                 3/3     Running     0          16d20h
+etcd-masternode2                 3/3     Running     0          16d20h
 ```
-
-
-6. Check the etcd cluster is healthy
-```
-# etcdctl -C https://10.248.164.14:2379 --ca-file=/etc/etcd/ca.crt --cert-file=/etc/etcd/peer.crt --key-file=/etc/etcd/peer.key cluster-health
-member 62716e30614d7108 is healthy: got healthy result from https://10.248.164.14:2379
-member 650b55864907513f is healthy: got healthy result from https://10.248.164.15:2379
-member 9f71e4c3be9d2b7c is healthy: got healthy result from https://10.248.164.16:2379
-cluster is healthy
-```
-
 
 Restore from snapshot
 ----------------
 
-> Notices: The procedure to restore the data MUST be performed on a SINGLE etcd host. You can then add the rest of the nodes to the cluster.
+> Notices: The procedure to restore the data MUST be performed on a SINGLE etcd host. Then the etcd cluster Operator handles scaling to the remaining master hosts.
+
+ please refer https://docs.openshift.com/container-platform/4.5/backup_and_restore/disaster_recovery/scenario-2-restoring-cluster-state.html to recover to previous state
 
 
-Please refer: https://docs.openshift.com/container-platform/3.11/admin_guide/assembly_restoring-cluster.html#restoring-etcd-v3-snapshot
-
-
-
-Update ETCD_INITIAL_CLUSTER_STATE
-------------------
-
-
-On the master nodes do the following:
-
-```
-#Edit etcd.conf file
-sudo vi /etc/etcd/etcd.conf
-ETCD_INITIAL_CLUSTER_STATE=new
-#Change to
-ETCD_INITIAL_CLUSTER_STATE=existing
-# Check that this flag is blank
-ETCD_INITIAL_CLUSTER=
-#Find PID of etcd container
-sudo docker ps | grep k8s_etcd_master-etcd-
-#Kill etcd container
-sudo docker kill [PID]
-#Check that etcd got restarted
-sudo docker ps | grep k8s_etcd_master-etcd-
- 
-#Verify etcd endpoint on local node is up and cluster is healthy.
-etcdctl -C https://[NODE-IP]:2379 \
-  --ca-file=/etc/etcd/ca.crt     \
-  --cert-file=/etc/etcd/peer.crt     \
-  --key-file=/etc/etcd/peer.key cluster-health
-
-````
 
 
 Refer
 ------
 
 
-Refer: https://medium.com/better-programming/a-closer-look-at-etcd-the-brain-of-a-kubernetes-cluster-788c8ea759a5
+ https://medium.com/better-programming/a-closer-look-at-etcd-the-brain-of-a-kubernetes-cluster-788c8ea759a5
 
 OpenShift documentation related to ETCD
 - https://docs.openshift.com/container-platform/3.11/admin_guide/assembly_restoring-cluster.html
