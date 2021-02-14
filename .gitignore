@@ -15,5 +15,11 @@ _book
 *.epub
 *.mobi
 *.pdf
-*.html
 
+# My draft
+.draft
+
+
+_site/
+_draft/
+.jekyll-cache/

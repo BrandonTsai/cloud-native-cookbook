@@ -1,0 +1,43 @@
+# Configurations
+title:            Brandon's Cloud Native Notes
+longtitle:        Brandon's Cloud Native Notes
+author:           Brandon Tsai
+email:            brandon@darumatic.com
+description: >
+  My Secret Cloud Native Notes
+
+version:          1.0
+gitbook_version:  3.2.3
+
+url:              'https://brandontsai.github.io'
+baseurl:          '/cloud-naticve-cookbook'
+rss:              RSS
+
+# markdown render engine.
+markdown:         kramdown
+kramdown:
+  auto_ids:               true
+  input:                  GFM
+  math_engine:            mathjax
+  smart_quotes:           lsquo,rsquo,ldquo,rdquo
+  toc_levels:             1..6
+  syntax_highlighter:     coderay
+  syntax_highlighter_opts:
+    guess_lang:           true
+
+markdown_ext:     markdown,mkdown,mkdn,mkd,md
+
+# Permalinks
+permalink:        /:categories/:year-:month-:day-:title:output_ext
+
+exclude:
+  - _drafts
+
+destination:      ./_site
+incremental:      false
+regenerate:       true
+
+plugins:
+  - jemoji
+
+theme: jekyll-theme-cayman

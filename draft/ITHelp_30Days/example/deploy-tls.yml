@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx
+  labels:
+    app: nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: quay.io/brandon_tsai/testlab:1
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+        - containerPort: 8443
+        volumeMounts:
+        - name: nginx-tls
+          mountPath: /opt/app-root/tls
+        - name: nginx-config
+          mountPath: /opt/app-root/etc/nginx.d/
+      volumes:
+        - name: nginx-tls
+          secret:
+            secretName: nginx-tls
+        - name: nginx-config
+          configMap:
+            name: nginx-config
