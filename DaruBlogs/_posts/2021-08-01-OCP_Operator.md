@@ -1,5 +1,5 @@
 ---
-title: "#7 OpenShift: Operator & OperatorHub"
+title: "#6 OpenShift: Operator & OperatorHub"
 author: Brandon Tsai
 ---
 

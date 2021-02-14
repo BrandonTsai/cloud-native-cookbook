@@ -1,5 +1,5 @@
 ---
-title: "#5 OpenShift: Network Policy"
+title: "#4 OpenShift: Network Policy"
 author: Brandon Tsai
 ---
 
