@@ -1,0 +1,12 @@
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: allow-https-only-to-nginx
+spec:
+  podSelector:
+    matchLabels:
+      app: nginx-uat
+  ingress:
+  - ports:
+    - protocol: TCP
+      port: 8443

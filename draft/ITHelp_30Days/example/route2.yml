@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Route
+metadata:
+  name: nginx2
+spec:
+  host: nginx.apps-crc.testing
+  to:
+    kind: Service
+    name: nginx

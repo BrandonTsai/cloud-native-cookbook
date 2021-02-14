@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx
+  labels:
+    app: nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: quay.io/brandon_tsai/testlab:1
+        imagePullPolicy: Always
+        command: ["tail"]
+        args: ["-f", "/dev/null"]
+        ports:
+        - containerPort: 8080
+        - containerPort: 8443
