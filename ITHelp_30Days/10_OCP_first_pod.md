@@ -181,6 +181,50 @@ nginx-pod   1/1     Running   0          26m
 ```
 
 
+
+
+To fix the ssh/scp/sftp issue in containers running in OpenShift
+---------------
+
+According to RedHat's suggestion: https://access.redhat.com/solutions/4665281
+
+
+Step 1: Modification of an image using Dockerfile
+
+```
+RUN chmod g=u /etc/passwd
+```
+
+Step 1: setting up an ENTRYPOINT that runs a script. For example:
+
+
+ENTRYPOINT.sh
+```
+#!/bin/bash
+if ! whoami &> /dev/null; then
+  if [ -w /etc/passwd ]; then
+    echo "${USER_NAME:-default}:x:$(id -u):0:${USER_NAME:-default} user:${HOME}:/sbin/nologin" >> /etc/passwd
+  fi
+fi
+exec "$@"
+```
+
+Dockerfile
+```
+ADD ENTRYPOINT.sh /opt/ENTRYPOINT.sh
+
+RUN chmod g=u /etc/passwd && \
+    chgrp -R 0 /opt/ENTRYPOINT.sh && \
+    chmod -R g+rx /opt/ENTRYPOINT.sh
+
+ENTRYPOINT ["/opt/ENTRYPOINT.sh"]
+```
+
+
+
+
+
+
 Conclusion
 -----------
 There are some security consideration when run as root in the container, please check https://americanexpress.io/do-not-run-dockerized-applications-as-root/ for more details about this issue.

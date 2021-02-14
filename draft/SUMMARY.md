@@ -19,7 +19,7 @@ Container
 
 Introduction
 ------------
-
+- odo 2.0: https://developers.redhat.com/blog/2020/10/06/kubernetes-integration-and-more-in-odo-2-0/?sc_cid=7013a00000264DlAAI
 - Kubernetes Introduction
 - Set up
   - minikube
