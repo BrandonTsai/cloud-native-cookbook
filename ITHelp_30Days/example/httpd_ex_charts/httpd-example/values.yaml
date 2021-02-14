@@ -1,9 +1,0 @@
-application_domain: '# TODO: must define a default value for .application_domain'
-context_dir: '# TODO: must define a default value for .context_dir'
-generic_webhook_secret: '# TODO: must define a default value for .generic_webhook_secret'
-github_webhook_secret: '# TODO: must define a default value for .github_webhook_secret'
-memory_limit: 128Mi
-name: httpd-example
-namespace: openshift
-source_repository_ref: '# TODO: must define a default value for .source_repository_ref'
-source_repository_url: https://github.com/sclorg/httpd-ex.git

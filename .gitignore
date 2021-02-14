@@ -19,3 +19,7 @@ _book
 # My draft
 .draft
 
+
+_site/
+_draft/
+.jekyll-cache/

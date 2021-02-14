@@ -1,6 +1,0 @@
-description: An example Apache HTTP Server (httpd) application that serves static
-  content. For more information about using this template, including OpenShift considerations,
-  see https://github.com/sclorg/httpd-ex/blob/master/README.md.
-name: httpd-example
-tags: quickstart,httpd
-version: v0.0.1

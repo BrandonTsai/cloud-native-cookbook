@@ -1,8 +1,0 @@
-apiVersion: v1
-kind: Route
-metadata:
-  name: nginx
-spec:
-  to:
-    kind: Service
-    name: nginx
