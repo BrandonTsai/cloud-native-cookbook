@@ -10,7 +10,7 @@ version:          1.0
 gitbook_version:  3.2.3
 
 url:              'https://brandontsai.github.io'
-baseurl:          '/cloud-naticve-cookbook'
+baseurl:          '/cloud-native-cookbook'
 rss:              RSS
 
 # markdown render engine.
