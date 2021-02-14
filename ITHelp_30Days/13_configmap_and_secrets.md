@@ -9,7 +9,7 @@ These configuration files and environment variables should be decoupled from doc
 In Kubernetes based platform, we could use `ConfigMap` and `Secret` object to setting configuration data separately from application code.
 
 A ConfigMap is an object used to store non-confidential data in key-value pairs, it does not provide secrecy or encryption. If the data you want to store are confidential, use a Secret rather than a ConfigMap, or use additional (third party) tools to keep your data private.
-This article will give a overview of ConfigMap Usage.
+This article will give an overview of ConfigMap Usage.
 
 Create ConfigMap From Directories/file
 ---------------------------------------
@@ -129,7 +129,7 @@ spec:
             name: nginx-html-icons
 ```
 
-Risks od using secrets in Kubernetes
+Risks of using secrets in Kubernetes
 ----------
 
 - In the API server, secret data is stored in etcd; therefore:
@@ -146,8 +146,7 @@ Risks od using secrets in Kubernetes
 How OpenShift handle the secrets issue.
 ------------------------------------------
 
-
-From the case description, I understand that you are looking to leverage resources encryption, in particular secret encryption at the datastore layer. By default, etcd data is not encrypted in OpenShift Container Platform. You can enable etcd encryption for your cluster to provide an additional layer of data security. 
+From the case description, I understand that you are looking to leverage resources encryption, in particular secret encryption at the datastore layer. By default, etcd data is not encrypted in OpenShift Container Platform. You can enable etcd encryption for your cluster to provide an additional layer of data security.
 
 When you enable etcd encryption, the following OpenShift API server and Kubernetes API server resources are encrypted:
 

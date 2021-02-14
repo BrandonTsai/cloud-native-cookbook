@@ -201,6 +201,9 @@ role.rbac.authorization.k8s.io/system:controller:bootstrap-signer           kube
 
 ```
 
+### **neat**
+
+
 ### **images**
 
 This plugin shows container images used in the Kubernetes cluster in a
@@ -282,6 +285,9 @@ With this plugin installed, you can filter pod with kubectl grep easily
 $ kubectl grep pods "keyword"
 $ kubectl grep pods "keyword" -o wide
 ```
+
+
+
 
 Conclusion
 ----------

@@ -19,3 +19,10 @@ Tips:
 ------------------
 
 - No more than 2 images in one article.
+
+
+Brandon, please read and plan your future:
+--------
+
+https://medium.com/datadriveninvestor/growth-hacking-your-coaching-or-consulting-business-in-10-steps-feeb7f3764d8
+

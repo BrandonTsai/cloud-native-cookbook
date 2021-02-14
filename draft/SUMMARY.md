@@ -27,7 +27,9 @@ Introduction
   - (Review) [Rancher labs](02-Introduction/Review_Rancherlab.md)
   - https://www.kubermatic.com/products/kubermatic/
 - [cli tools for kubernetes](../blogs/05_Improve_Kubectl_Command_with_Krew.md)
-- minishift on MacOS and Cli tools
+- k9s
+- odo
+
 
 Beginner
 --------
@@ -67,6 +69,7 @@ Cluster Admin
 ------------
 - Managing TLS Certs
 - etcd cluster
+- kubeaudit
 
 
 Monitoring
