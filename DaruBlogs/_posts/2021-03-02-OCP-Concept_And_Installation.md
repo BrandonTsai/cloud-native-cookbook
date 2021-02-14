@@ -1,3 +1,8 @@
+---
+title: "#1 OpenShift Concept and CodeReady Installation"
+author: Brandon Tsai
+---
+
 
 Openshift Introduction
 ---------------------

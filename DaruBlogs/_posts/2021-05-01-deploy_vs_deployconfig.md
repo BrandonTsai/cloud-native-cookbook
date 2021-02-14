@@ -1,3 +1,8 @@
+---
+title: "#3 OpenShift: Deployment vs DeploymentConfig"
+author: Brandon Tsai
+---
+
 Deployment vs DeploymentConfig
 -----------------------
 
@@ -6,15 +11,15 @@ They allows you to describe an application’s life cycle, such as which images 
 
 
 
-| | Deployment | DeploymentConfig |
-|--|------------|------------------|
-| Building blocks | Using **`ReplicaSet`** | Using **`ReplicationController`** |
-| Selector | Supports the new **set-based** selector. <BR> for eg: `environment in (production, qa)`  | only supports equality-based selector. <BR> for eg: `environment = production`  |
-| CAP theorem |prefer availability <BR> During a failure it is possible for other masters to act on the same Deployment at the same time. | take consistency over availability <BR> if a node running a deployer Pod goes down, it will not get replaced. The process waits until the node comes back online or is manually deleted.  |
-| Automatic rollbacks | Not Support | Can rolling back to the last successfully deployed ReplicationController in case of a failure. |
-| Trigger | Not Support | every change in the pod template of a deployment automatically triggers a new rollout. If you do not want new rollouts on pod template changes, pause the deployment |
-| Lifecycle hooks | Not Support | |
-| Custom strategies | Not Support | Support user-specified Custom deployment strategies |
+|                     | Deployment                                                                                                                 | DeploymentConfig                                                                                                                                                                         |
+| ------------------- | -------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Building blocks     | Using **`ReplicaSet`**                                                                                                     | Using **`ReplicationController`**                                                                                                                                                        |
+| Selector            | Supports the new **set-based** selector. <BR> for eg: `environment in (production, qa)`                                    | only supports equality-based selector. <BR> for eg: `environment = production`                                                                                                           |
+| CAP theorem         | prefer availability <BR> During a failure it is possible for other masters to act on the same Deployment at the same time. | take consistency over availability <BR> if a node running a deployer Pod goes down, it will not get replaced. The process waits until the node comes back online or is manually deleted. |
+| Automatic rollbacks | Not Support                                                                                                                | Can rolling back to the last successfully deployed ReplicationController in case of a failure.                                                                                           |
+| Trigger             | Not Support                                                                                                                | every change in the pod template of a deployment automatically triggers a new rollout. If you do not want new rollouts on pod template changes, pause the deployment                     |
+| Lifecycle hooks     | Not Support                                                                                                                |                                                                                                                                                                                          |
+| Custom strategies   | Not Support                                                                                                                | Support user-specified Custom deployment strategies                                                                                                                                      |
 
 
 Both Kubernetes Deployments and OpenShift Container Platform-provided DeploymentConfigs are supported to manage pods. Despite the fact that DeploymentConfig has some extra featuers than Deployment, these features are not very useful in most case, it is recommended to use Deployments unless you need a specific feature or behavior provided by DeploymentConfigs.

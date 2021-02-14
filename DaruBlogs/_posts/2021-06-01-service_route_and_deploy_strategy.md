@@ -1,6 +1,7 @@
-
-免除 Ingress Controller 煩惱，擁抱 Route 新世界
-==============================
+---
+title: "#4 OpenShift: Route & Deployment Strategies"
+author: Brandon Tsai
+---
 
 Networking Concept: Service & Route
 ================

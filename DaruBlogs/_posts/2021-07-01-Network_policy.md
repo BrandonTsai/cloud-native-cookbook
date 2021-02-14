@@ -1,3 +1,7 @@
+---
+title: "#5 OpenShift: Network Policy"
+author: Brandon Tsai
+---
 
 
 By default, all Pods are accessible from other Pods and network endpoints. To isolate one or more Pods in a project, you can create `NetworkPolicy` objects in that project to indicate the allowed incoming connections.
