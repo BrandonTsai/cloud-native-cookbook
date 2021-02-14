@@ -4,6 +4,6 @@ layout: home
 
 
 Plan for 2021 ITHelp Challenge:
-- Implement a customize operator
+- Implement customize resource and operator
 - Service Mesh
 - Knative (Serverless)
