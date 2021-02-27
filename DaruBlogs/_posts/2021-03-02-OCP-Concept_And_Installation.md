@@ -69,7 +69,7 @@ When start process finished, it will show the user credentials that you can use 
 To access the cluster, first set up your environment by following `crc oc-env` instructions.
 
 ```
-$ Brandons-MacBook-Pro:crc-macos-1.16.0-amd64 brandon$ crc oc-env
+$ crc oc-env
 export PATH="/Users/brandon/.crc/bin/oc:$PATH"
 # Run this command to configure your shell:
 # eval $(crc oc-env)
@@ -175,8 +175,4 @@ Cache Directory: /Users/brandon/.crc/cache
 Conclusion
 ----------
 
-Since Kubernetes forms the base of OpenShift, one can find a lot of common aspects between the two.  While Kubernetes remains a container platform, OpenShift comes into being and keeps a tab on the needs of different enterprises.
-
-Kubernetes and OpenShift are widespread container management systems, and each has its unique features, benefits, and undoubtedly some drawbacks too. While K8s helps automate application deployment, scaling, and operations, OpenShift is the containerization platform that runs with Kubernetes underneath to help applications run more efficiently. If you are already aware of containerization principles and have some idea about K8s, you would slightly lean towards Kubernetes since it is much more flexible than the OpenShift.
-
-Openshift, even though has an opinionated approach but it is indeed easier for beginners simply because it offers a better CLI and of course a web interface. Beginners would definitely want to have a go at the web interface rather than the CLI. Whereas the dashboard with K8s is not so ideal, considering it doesn’t bring more value to K8s than the command line. It can’t be concluded that the OpenShift has the best web interface available out there,  however it is very useful since it makes things easier for a user, and tell me who doesn’t like EASY!
+Since Kubernetes forms the base of OpenShift, one can find a lot of common aspects between the two. While Kubernetes takes care of automating application operation and provides the felixiblity for cluster configuration, OpenShift comes into the needs for enterprises.
