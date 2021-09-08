@@ -1,4 +1,3 @@
-
 ---
 title: "#3 Deep into Hello World!"
 author: Brandon Tsai
