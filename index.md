@@ -3,13 +3,10 @@ layout: home
 ---
 
 
-Plan for 2021 ITHelp Challenge:
+To Learn in 2021:
+
 - **Implement customize resource and operator**
   - Show a list of images and their vulnerabilities
-- **Service Mesh**
-  - concept
-  - deploy to OCP4
-  - Test
 - **Knative (Serverless)**
   - concept
   - deploy to OCP4
@@ -18,4 +15,8 @@ Plan for 2021 ITHelp Challenge:
   - concept
   - Set up Vault
   - Integrate with OCP4
+  - Test
+- **Service Mesh**
+  - concept
+  - deploy to OCP4
   - Test
