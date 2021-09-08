@@ -1,5 +1,5 @@
 ---
-title: "#2 OpenShift: Using S2I Base Images and new-app command"
+title: "#2"
 author: Brandon Tsai
 ---
 

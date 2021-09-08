@@ -1,12 +1,10 @@
-網路安全，人人有責： Network Policy
-========
 
-By default, all Pods are accessible from other Pods and network endpoints. To isolate one or more Pods in a project, you can create `NetworkPolicy` objects in that project to indicate the allowed incoming connections.
-
-If a Pod is matched by selectors in one or more NetworkPolicy objects, then the Pod will accept only connections that are allowed by at least one of those NetworkPolicy objects. A Pod that is not selected by any NetworkPolicy objects is fully accessible.
+In Kubernetes, all Pods are accessible from other Pods and network endpoints by default. To isolate and restrict traffic to pods in the cluster, we can install [Calico](https://docs.projectcalico.org/getting-started/kubernetes/) and create `NetworkPolicy` objects to indicate the allowed incoming connections. For OpenShift cluster, the OpenShift SDN already supports it in the default network isolation mode, the cluster administrator does not need to install Calico.
 
 
-Only accept connections from Pods within a project
+In this blog, we will show how to use NetworkPolicy to restrict the ingress connections in our namespace.
+
+Only accept connections from Pods within a namespace
 -----------------------
 
 If a pod in UAT project know the clusterIP of another pod in PROD project, actually it can connect to the pod via the clusterIP
@@ -36,13 +34,11 @@ $ oc rsh nginx-uat-5fb55b7d79-hgzzl curl http://172.25.45.167
 
 To avoid this situation, you can apply following Network Policy on PROD project
 
-
-
 ```
 kind: NetworkPolicy
 apiVersion: networking.k8s.io/v1
 metadata:
-  name: allow-same-namespace
+  name: allow-same-namespace-only
 spec:
   podSelector:
   ingress:
@@ -51,7 +47,7 @@ spec:
 ```
 
 ```
-$ oc apply -f np-allow-same-project-only.yml -n prod
+$ oc apply -f np-allow-same-namespace-only.yml -n prod
 networkpolicy.networking.k8s.io/allow-same-namespace created
 
 $ oc rsh nginx-uat-5fb55b7d79-hgzzl curl http://172.25.45.167
@@ -70,7 +66,7 @@ In this case, you can apply following network policy
 kind: NetworkPolicy
 apiVersion: networking.k8s.io/v1
 metadata:
-  name: allow-pod-and-namespace-both
+  name: allow-pod-to-api-gw
 spec:
   podSelector:
     matchLabels:
@@ -140,22 +136,13 @@ $ oc rsh test-pod curl -s -o /dev/null -w "%{http_code}\n" -k https://nginx-uat
 
 ## Other pods must use https port to connect to nginx pod
 $ oc rsh test-pod curl -s -o /dev/null -w "%{http_code}\n" http://nginx-uat
-000 
 command terminated with exit code 7
 
 ```
 
-
-
-
 Conclusion
 ------
 
-In Kubernetes, you can use install [Calico](https://docs.projectcalico.org/getting-started/kubernetes/) to do the same thing.
+A Pod is fully accessible if it is not selected by any NetworkPolicy objects. To enhance the security, the cluster administrator should always apply the NetworkPolicy that only allow connections within a namespace when creating a new namespace.
 
 
-
-Reference
-----------
-
-- https://docs.openshift.com/container-platform/4.5/networking/network_policy/about-network-policy.html

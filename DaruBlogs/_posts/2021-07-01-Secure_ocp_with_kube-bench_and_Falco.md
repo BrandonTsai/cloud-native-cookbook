@@ -3,6 +3,9 @@ title: "#5 OpenShift: Secure OpenShift with Kube-bench and Falco"
 author: Brandon Tsai
 ---
 
+
+Refer: https://kubernetes.io/blog/2021/08/25/seccomp-default/
+
 Secure OpenShift with Kube-bench and Falco
 =========================================
 
