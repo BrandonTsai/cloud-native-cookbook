@@ -1,5 +1,5 @@
 ---
-title: "#2"
+title: "#2 S2I and New-app"
 author: Brandon Tsai
 ---
 

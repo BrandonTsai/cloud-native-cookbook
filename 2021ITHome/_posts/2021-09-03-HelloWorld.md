@@ -1,9 +1,8 @@
 
-Deep into Hello World!
-======================
-
-How it works
--------------
+---
+title: "#3 Deep into Hello World!"
+author: Brandon Tsai
+---
 
 Let's start by understanding the hello.go example
 

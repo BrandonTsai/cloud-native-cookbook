@@ -1,6 +1,7 @@
-
-Installation and toolchain
-=========================
+---
+title: "#2 Installation and toolchain"
+author: Brandon Tsai
+---
 
 Installation
 -----------

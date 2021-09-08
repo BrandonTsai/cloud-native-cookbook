@@ -1,5 +1,5 @@
 ---
-title: "#5 OpenShift: Secure OpenShift with Kube-bench and Falco"
+title: "#2 OpenShift: Secure OpenShift with Kube-bench and Falco"
 author: Brandon Tsai
 ---
 

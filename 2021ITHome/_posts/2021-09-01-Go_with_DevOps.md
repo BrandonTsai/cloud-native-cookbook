@@ -1,5 +1,7 @@
-Golang + DevOps? Does DevOps Engineer Need to Learn Golang?
-===========================================
+---
+title: "#1 Golang + DevOps? Does DevOps Engineer Need to Learn Golang?"
+author: Brandon Tsai
+---
 
 Golang for software developing.
 ---------------------------
