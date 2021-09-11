@@ -15,7 +15,7 @@ import "fmt"
 
 func main() {
     var message string = "Hello world!"
-	fmt.Println(message)
+    fmt.Println(message)
 }
 ```
 
@@ -39,12 +39,12 @@ Default Value
 
 Any variable declared without an initial value will have a default value assigned.
 
-| Type      | Default Value |
-| --------- | ------------- |
-| bool      | false         |
-| string    | ""            |
-| int, int8 | 0             |
-| flost32   | 0.0           |
+| Type              | Default Value |
+| ----------------- | ------------- |
+| bool              | false         |
+| string            | ""            |
+| int, int32, int64 | 0             |
+| flost32, float64  | 0.0           |
 
 
 ```go
@@ -97,7 +97,7 @@ The convention in Go is to use `MixedCaps` or `mixedCaps` (simply camelCase) rat
 Type Conversion
 ---------------
 
-### numeric types conversion
+**numeric types conversion**
 
 Golang doesn’t allow you to mix numeric types in an expression. For example:
 
@@ -112,7 +112,7 @@ result := float64(a) + b // Works
 ```
 
 
-### String and other basic data types conversion:
+**String and other basic data types conversion:**
 
 Use the [strconv](https://pkg.go.dev/strconv) package to conversions to/from string representations of basic data types
 
