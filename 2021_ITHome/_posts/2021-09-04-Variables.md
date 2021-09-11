@@ -94,6 +94,78 @@ The convention in Go is to use `MixedCaps` or `mixedCaps` (simply camelCase) rat
 | mixedCaps  | If you don't have the intention to use it in another package |
 
 
+Type Conversion
+---------------
+
+### numeric types conversion
+
+Golang doesn’t allow you to mix numeric types in an expression. For example:
+
+```go
+a := 2021
+b := 3.1415
+
+result := a + b // Error (invalid operation: mismatched types int and float64)
+
+result := float64(a) + b // Works
+
+```
+
+
+### String and other basic data types conversion:
+
+Use the [strconv](https://pkg.go.dev/strconv) package to conversions to/from string representations of basic data types
+
+```go
+package main
+
+import (
+	"fmt"
+	"reflect"
+	"strconv"
+)
+
+func main() {
+	// Convert String to Bool, Float, Integer
+	b, err := strconv.ParseBool("true")
+	fmt.Println(b, err, reflect.TypeOf(b))
+
+	f, err := strconv.ParseFloat("3.1415", 64)
+	fmt.Println(f, err, reflect.TypeOf(f))
+
+	i, err := strconv.ParseInt("-42", 10, 64)
+	fmt.Println(i, err, reflect.TypeOf(i))
+
+	// Convert Bool, Float, Integer to String.
+	sb := strconv.FormatBool(b)
+	sf := strconv.FormatFloat(f, 'G', -1, 64)
+	si := strconv.FormatInt(i, 10)
+
+	fmt.Printf(sb + "\t" + sf + "\t" + si + "\n")
+}
+```
+
+Constants Variables
+-------------
+
+We can declair `constant` variables to represent fixed values
+
+for example
+
+```go
+const capital string = "Taipei"
+const population2020 int32 = 23568378
+const (
+	a = 5 + population2020 // Valid
+	b = population2020 / 5 // Valid
+)
+
+func main() {
+	fmt.Printf("Hello %s !\n", capital)
+	fmt.Printf("Taiwan's Population: %d!\n", population2020)
+}
+```
+
 
 Access Environment Variables
 ----------------------
