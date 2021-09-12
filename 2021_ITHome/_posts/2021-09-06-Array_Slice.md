@@ -207,7 +207,7 @@ fmt.Println(s2, len(s2), reflect.TypeOf(s2).Kind()) //output = [4 2 4 6]
 ```
 
 
-Iterating over an slice:
+Iterating over a slice:
 
 ```go
 
