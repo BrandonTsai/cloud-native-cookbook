@@ -6,16 +6,15 @@ import (
 
 func main() {
 
-	s := []int{2, 4, 6, 8, 10}
-
-	// get value with index
-	for i := 0; i < len(s); i++ {
-		fmt.Println(s[i])
+	s := [][]int{
+		{2, 4, 6, 8, 10},
+		{1, 3, 5},
 	}
 
-	// you can use 'range' operator as well.
-	for _, value := range s {
-		fmt.Println(value)
+	for i := 0; i < len(s); i++ {
+		for _, value := range s[i] {
+			fmt.Println(value)
+		}
 	}
 
 }

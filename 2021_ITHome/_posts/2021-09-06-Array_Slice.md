@@ -1,3 +1,8 @@
+---
+title: "#6 Array and Slice"
+author: Brandon Tsai
+---
+
 Go has two type of structure to handle list:
 
 - **Array**: Fixed length list of elements.
@@ -210,14 +215,31 @@ fmt.Println(s2, len(s2), reflect.TypeOf(s2).Kind()) //output = [4 2 4 6]
 Iterating over a slice:
 
 ```go
+s := []int{2, 4, 6, 8, 10}
 
+// get value with index
+for i := 0; i < len(s); i++ {
+    fmt.Println(s[i])
+}
+
+// you can use 'range' operator as well.
+for _, value := range s {
+    fmt.Println(value)
+}
 ```
 
 
 Multidimensional slices:
 
 ```go
-```
+s := [][]int{
+    {2, 4, 6, 8, 10},
+    {1, 3, 5},
+}
 
-Sets
-----
+for i := 0; i < len(s); i++ {
+    for _, value := range s[i] {
+        fmt.Println(value)
+    }
+}
+```
