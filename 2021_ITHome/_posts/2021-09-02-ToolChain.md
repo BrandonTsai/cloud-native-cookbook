@@ -1,5 +1,5 @@
 ---
-title: "#2 Installation and toolchain"
+title: "#2 Installation and basic toolchain introduction"
 author: Brandon Tsai
 ---
 

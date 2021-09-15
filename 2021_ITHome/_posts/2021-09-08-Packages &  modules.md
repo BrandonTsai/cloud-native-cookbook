@@ -42,3 +42,8 @@ the go mod tidy command is used to add missing module dependencies into and remo
 
 `go mod download <package_name>`
 It downloads your module to the local cache. This helps when you are building your project with large size external packages. It’s better to cache them which certainly helps increasing build speed.
+
+
+Call funstion from resuable packages.
+-------
+Refer: https://www.callicoder.com/golang-packages/
