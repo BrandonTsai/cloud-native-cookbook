@@ -46,7 +46,45 @@ func getRate(numerator int, denominator int) (float64, error) {
 On above example, we return an `error` type value to indicate an abnormal situation and use blank identifier `_` to ignore some of the results from a function that returns multiple values.
 
 
-Custom Type Declarations
+We can put functions to another go file as well. For example:
+
+utils.go
+
+```go
+package main
+
+import "fmt"
+
+func hello() {
+	fmt.Println("Hello world")
+}
+
+```
+
+main.go
+
+```go
+package main
+
+func main() {
+	hello()
+}
+
+```
+
+Then you can run command "go run *.go" to test the result
+
+```bash
+$ go run *.go
+Hello world
+
+```
+
+
+
+Custom Type Declarations and methods
 --------
 
 GO apporach instead of Object Orient approach
+
+Why Custom type and reverse function?
