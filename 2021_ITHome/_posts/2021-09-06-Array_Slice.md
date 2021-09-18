@@ -5,7 +5,7 @@ author: Brandon Tsai
 
 Go has two type of structure to handle list:
 
-- **Array**: Fixed length list of elements.
+- **Array**: Fixed length list of elements. An array isn't immutable by nature; you can't make it constant.
 - **Slice**: flexiable length list that can groe or shrink.
 
 Every element in a Array or Slice must be of same types. The elements are stored sequentially and can be accessed using their index

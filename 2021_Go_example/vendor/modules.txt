@@ -1,0 +1,3 @@
+# golang.org/x/example v0.0.0-20210811190340-787a929d5a0d
+## explicit; go 1.15
+golang.org/x/example/stringutil

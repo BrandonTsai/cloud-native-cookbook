@@ -1,8 +1,8 @@
 ---
-title: "#7 Function and Custom Type Declarations"
+title: "#7 Introduction of Functions"
 author: Brandon Tsai
 ---
-Introduction of Function
+Declairing Functions
 -------------------------
 
 We can use the `func` keyword to declair a function as following: 
@@ -80,11 +80,32 @@ Hello world
 
 ```
 
+Be Aware Of Slices Type Parameter.
+----------------------------------
 
+As we mention in previous blog, slice is pass by reference.
+When you change the value of a slice type parameter inside the function,
+The value outside the function is changed as well.
 
-Custom Type Declarations and methods
---------
+for example:
 
-GO apporach instead of Object Orient approach
+```go
+package main
 
-Why Custom type and reverse function?
+import "fmt"
+
+func main() {
+
+	x := [5]int{5, 4, 3, 2, 1}
+	y := []int{5, 4, 3, 2, 1}
+	reset(x, y)
+	fmt.Println(x) //output = [5 4 3 2 1]
+	fmt.Println(y) //output = [0 4 3 2 1]
+}
+
+func reset(a [5]int, s []int) {
+	a[0] = 0
+	s[0] = 0
+}
+
+```

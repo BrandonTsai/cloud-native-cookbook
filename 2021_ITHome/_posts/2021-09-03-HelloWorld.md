@@ -83,3 +83,16 @@ This required you to install the package via command `go get <package>` before b
 ### func main()
 
 The entry of our execuable code. This function is required for main package.
+
+
+GOPATH
+-------
+
+GOPATH is a variable that defines the root of your workspace. By default, the workspace directory is a directory that is named go within your user home directory (~/go for Linux and MacOS, %USERPROFILE%/go for Windows). GOPATH stores your code base and all the files that are necessary for your development. You can use another directory as your workspace by configuring GOPATH for different scopes. GOPATH is the root of your workspace and contains the following folders:
+
+src/: location of Go source code (for example, .go, .c, .g, .s).
+
+pkg/: location of compiled package code (for example, .a).
+
+bin/: location of compiled executable programs built by Go.
+
