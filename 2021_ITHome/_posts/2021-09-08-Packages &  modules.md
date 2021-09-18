@@ -1,5 +1,5 @@
 ---
-title: "Go Modules"
+title: "#8 Go Modules"
 author: Brandon Tsai
 ---
 
@@ -13,7 +13,7 @@ At this point, we can use [Go Modules](https://go.dev/blog/using-go-modules) to 
 Basic Usage of "go mod" toolchain
 --------------
 
-### `go mod init <ProjectName>` 
+### `go mod init <ModuleName>` 
 This command is used to generated a go.mod file in the current directory, which will be viewed as the root directory of a module called.
 
 ```go
