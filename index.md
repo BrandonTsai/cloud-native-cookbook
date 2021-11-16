@@ -3,6 +3,7 @@ layout: home
 ---
 
 Daru Blog by the end of this year
+--------
 
 -  OCP4 Prometheus
 - OCP4 Monitor your apps and alertManager
@@ -20,13 +21,14 @@ Daru Blog by the end of this year
 
 
 To Learn in 2022 S1:
-
+-------
 
 - **Golang**
 - **Implement customize resource and operator**
   - Show a list of images and their vulnerabilities
 
 To Learn in 2022 S2:
+---------
 
 - **Knative (Serverless)**
   - concept
@@ -39,6 +41,7 @@ To Learn in 2022 S2:
   - Test
 
 To Learn in 2022 S3:
+-------
 
 - **Service Mesh**
   - concept
