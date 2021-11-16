@@ -1,5 +1,7 @@
 ---
 layout: home
+title: "ToDO"
+author: Brandon Tsai
 ---
 
 Daru Blog by the end of this year
