@@ -2,6 +2,7 @@
 # Daru Blog by the end of Nov
 [] Quay 3.6.1 with App Registry to keep helm chart
 [] OCS Basic usage
+[] OCP4 Monitoring via Prometheus,Grafana,AlertManager
 [] Nexus pip proxy
 [] Nexus golang proxy
 

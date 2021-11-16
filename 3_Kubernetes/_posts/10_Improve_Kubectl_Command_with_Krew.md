@@ -1,5 +1,4 @@
-
-Instead of implementing shell scripts to perform some complex behavior with kubectl, you can think of installing kubectl plugins to extended kubectl command to achieve custom functionality. The easiest way to manage plugins is [Krew](https://github.com/kubernetes-sigs/krew). Krew is a tool that aims to ease plugin discovery, installation, upgrade, and removal on multiple operating systems. This article will show you how easy it is to grab and experiment with existing plugins.
+Instead of implementing shell scripts to perform some complex behaviours with kubectl, you can instead use kubectl plugins to extended its functionality. The easiest way to manage plugins is [Krew](https://github.com/kubernetes-sigs/krew). Krew is a tool that aims to ease plugin discovery, installation, upgrade, and removal on multiple operating systems. This article will show you how easy it is to grab and experiment with existing plugins.
 
 
 Prerequisites: Minikube or existing Kubernetes cluster.
@@ -30,7 +29,7 @@ Please refer: https://krew.sigs.k8s.io/docs/user-guide/setup/install/ to install
 
 1. Make sure that git is installed.
 
-2. Run this command in your terminal to download and install krew:
+2. Run this command in your terminal to download and install Krew:
 
 ```bash
 (
@@ -49,7 +48,7 @@ Please refer: https://krew.sigs.k8s.io/docs/user-guide/setup/install/ to install
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 ```
 
-4. restart your shell and verify running kubectl krew works.
+4. Restart your shell and verify running kubectl krew works.
 
 ```bash
 $ kubectl krew
@@ -78,7 +77,7 @@ Use "krew [command] --help" for more information about a command.
 ```
 
 
-Search plugins and get the detail of particular plugin
+Search plugins and get the detail of any particular plugin
 -------------------------------------------------------
 
 List all plugins
@@ -98,7 +97,7 @@ change-ns                       View or change the current namespace via kubectl
 
 ```
 
-Get plugin detail by **kubectl krew info \<Plugin Name\>**
+Get plugin details by **kubectl krew info \<Plugin Name\>**
 
 ```bash
 $ kubectl krew info grep
@@ -174,11 +173,23 @@ $ kubectl ctx minikube
 Switched to context "minikube"
 ```
 
+### **neat**
+
+
+If you run `kubectl get pods -o yaml` on Kubernetes version "1.18"，you will find there are a lot of "f:{}" fields in the manifest which make it very hard to read and manage.
+
+For this issue, we can install [kubectl-neat](https://github.com/itaysk/kubectl-neat) plugin to cleans up these redundant information.
+
+```
+$ kubectl krew install neat
+$ kubectl get pod mypod -o yaml | kubectl neat
+```
+
 ### **get-all**
 
-This plugin is similar to "kubectl get all" but really everything
+This plugin is similar to "kubectl get all".
 
-For example, no resources can found in kube-public namespace by original "kubectl get all" command
+For example, no resources can be found in kube-public namespace by using the original "kubectl get all" command.
 
 ```bash
 $ kubectl get all -n kube-public
@@ -201,12 +212,9 @@ role.rbac.authorization.k8s.io/system:controller:bootstrap-signer           kube
 
 ```
 
-### **neat**
-
-
 ### **images**
 
-This plugin shows container images used in the Kubernetes cluster in a
+This plugin shows the container images used in the Kubernetes cluster in a
 table view. You can show all images or show images used in a specified
 namespace.
 
@@ -241,7 +249,7 @@ $ kubectl images -A
 
 ### **whoami**
 
-This plugin can be used to show the subject that's currently authenticated as.
+This plugin can be used to show the subject that it's currently authenticated as.
 
 ```bash
 $ kubectl krew install whoami
@@ -279,17 +287,14 @@ $ kubectl get pods            | grep "keyword"
 $ kubectl get pods -o wide    | grep "keyword"
 ```
 
-With this plugin installed, you can filter pod with kubectl grep easily
+With this plugin installed, you can filter a pod with kubectl grep easily.
 
 ```bash
 $ kubectl grep pods "keyword"
 $ kubectl grep pods "keyword" -o wide
 ```
 
-
-
-
 Conclusion
 ----------
 
-Kubectl command plugins can make life easier when working with kubernetes. If you can not find a plugin that is suitable for you, there is a document in the Kubernetes repo that describes how to [write your own custom plugin](https://kubernetes.io/docs/tasks/extend-kubectl/kubectl-plugins/).
+Kubectl command plugins can make your life easier when working with Kubernetes. If you can not find a plugin that is suitable for you, there is a document in the Kubernetes repo that describes how to [write your own custom plugin](https://kubernetes.io/docs/tasks/extend-kubectl/kubectl-plugins/).
