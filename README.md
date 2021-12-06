@@ -1,7 +1,6 @@
 # Jekyll GitBook
 
 Make Jelly site have a GitBook look!
-https://drive.google.com/file/d/1zNxQHAdu2POnvOgHVGVz1U03zmI7fUBj/view?usp=sharing
 
 ## Demo
 
