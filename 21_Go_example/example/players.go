@@ -1,4 +1,4 @@
-package mainM
+package main
 
 type contactInfo struct {
 	phone string

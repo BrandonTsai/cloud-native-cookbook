@@ -21,7 +21,7 @@ func main() {
 
 A variable declairation is composed of 3 components:
 
-| var                                                   | hello                        | string                    |
+| var                                                   | message                      | string                    |
 | ----------------------------------------------------- | ---------------------------- | ------------------------- |
 | Inform Go compier that we are creating a new variable | the name of the new variable | The associated data type. |
 
@@ -44,7 +44,7 @@ Any variable declared without an initial value will have a default value assigne
 | bool              | false         |
 | string            | ""            |
 | int, int32, int64 | 0             |
-| flost32, float64  | 0.0           |
+| float32, float64  | 0.0           |
 
 
 ```go

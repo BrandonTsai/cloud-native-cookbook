@@ -71,9 +71,9 @@ We will discuss how to use reuseable packages later.
 ### import
 
 Use to import code from other packages.
-Although there are some standard librariessuch as math, fmt ,debug ... etc.
+Although there are some standard libraries such as math, fmt ,debug ... etc.
 We still need to use import to link the library to our package.
-you can find out more standard libraries on golang.org/pkg
+you can find out more standard libraries on [https://pkg.go.dev/std](https://pkg.go.dev/std)
 
 Besides, you can import third party packages from internet as well.
 for example `import "golang.org/x/example/stringutil"`

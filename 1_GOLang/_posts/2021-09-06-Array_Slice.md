@@ -99,6 +99,8 @@ for _, raw := range a {
 Slice
 ------
 
+The slice type is an abstraction built on top of Go’s array type. But unlike an array type, a slice does not have specified fix length.
+
 Declair slices:
 
 ```go
