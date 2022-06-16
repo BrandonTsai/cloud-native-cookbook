@@ -1,5 +1,5 @@
 ---
-title: "#5 Introduction to Control Flow"
+title: "#5 Control Flow"
 author: Brandon Tsai
 ---
 

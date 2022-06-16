@@ -1,5 +1,5 @@
 ---
-title: "#4 Introduction to Variables"
+title: "#4 Variables"
 author: Brandon Tsai
 ---
 
