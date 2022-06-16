@@ -1,3 +1,9 @@
+---
+title: "#14 Call Linux cmmand"
+author: Brandon Tsai
+---
+
+
 https://zetcode.com/golang/exec-command/
 
 

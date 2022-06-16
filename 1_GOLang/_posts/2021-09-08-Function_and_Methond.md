@@ -1,5 +1,5 @@
 ---
-title: "#7 Introduction of Functions"
+title: "#8 Introduction of Functions"
 author: Brandon Tsai
 ---
 Declairing Functions
