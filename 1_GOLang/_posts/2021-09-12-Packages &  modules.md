@@ -1,5 +1,5 @@
 ---
-title: "#8 Go Modules"
+title: "#12 Go Modules"
 author: Brandon Tsai
 ---
 
