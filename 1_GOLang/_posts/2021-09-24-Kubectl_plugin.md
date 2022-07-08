@@ -1,5 +1,5 @@
 
-In this blog, I will show to how to work wwith kubernetes resource via Go client
+In this blog, I will show to how to work with kubernetes resource via Go client
 we are going to implement a kubectl plug which will scan the vuls of the images of the pods running on the namespace
 
 

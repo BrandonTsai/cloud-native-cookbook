@@ -82,8 +82,7 @@ spec:
   type: ClusterIP
 
 ```
-	  
-	  
+
 Setting up metrics collection
 -----------
 
