@@ -1,5 +1,5 @@
 ---
-title: "#6 Array and Slice"
+title: "#7 Array and Slice"
 author: Brandon Tsai
 ---
 
