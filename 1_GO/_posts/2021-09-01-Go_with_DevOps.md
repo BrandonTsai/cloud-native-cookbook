@@ -1,12 +1,12 @@
 ---
-title: "#1 Golang + DevOps? Does DevOps Engineer Need to Learn Golang?"
+title: "#1 GoDevOps? Learning Go as DevOps Engineer."
 author: Brandon Tsai
 ---
 
-Golang for software developing.
+Go for software developing.
 ---------------------------
 
-Golang is becoming more famous and important in the world of software development
+Go is becoming more famous and important in the world of software development
 because following advantages:
 
 **1. It is fast.**
@@ -25,7 +25,7 @@ Goroutines are lightweight threads which takes little memory space. It is possib
 This make it very suitable for microservice and cloud platform.
 
 
-When Golang comes to DevOps.
+When Go comes to DevOps.
 ----------------------
 
 Go has been the go to language when it comes to cloud and DevOps tools.
@@ -42,14 +42,8 @@ Following famous cloud technology and DevOps tools wrote with Go:
 - Prometheus
 - Grafana
 
-Learning Golang could help a DevOps engineer to better understand the architecture of these famous tools. What's more, DevOps engineer can implement tools to works with these morden technologies easily.
+Learning Go could help a DevOps engineer to better understand the architecture of these famous tools. What's more, DevOps engineer can implement tools to works with these morden technologies easily.
 
-
-
-30 Days Challenge Plan
------------------------------
-
-In this year's 30 days challenge, I would start with the introduction of Golang, following by reviewing these famous DevOps tools's architecture and implementing some tools to work with these tools.
 
 
 

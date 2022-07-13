@@ -1,0 +1,1 @@
+https://medium.com/better-programming/build-a-kubernetes-operator-in-10-minutes-11eec1492d30
