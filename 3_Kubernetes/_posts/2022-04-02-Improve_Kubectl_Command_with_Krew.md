@@ -1,3 +1,8 @@
+---
+title: "#2 Improve Kubectl CLI via Krew"
+author: Brandon Tsai
+---
+
 Instead of implementing shell scripts to perform some complex behaviours with kubectl, you can instead use kubectl plugins to extended its functionality. The easiest way to manage plugins is [Krew](https://github.com/kubernetes-sigs/krew). Krew is a tool that aims to ease plugin discovery, installation, upgrade, and removal on multiple operating systems. This article will show you how easy it is to grab and experiment with existing plugins.
 
 

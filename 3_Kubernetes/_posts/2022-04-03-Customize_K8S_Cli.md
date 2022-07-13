@@ -1,3 +1,7 @@
+---
+title: "#3 Customize K8S CLI plugin"
+author: Brandon Tsai
+---
 
 
 A kubectl plugin is a
