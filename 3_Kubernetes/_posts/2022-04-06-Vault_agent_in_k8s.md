@@ -1,5 +1,5 @@
 ---
-title: "#5 HashiCorp Vault: Vault Agent"
+title: "#6 HashiCorp Vault: Vault Agent"
 author: Brandon Tsai
 ---
 
