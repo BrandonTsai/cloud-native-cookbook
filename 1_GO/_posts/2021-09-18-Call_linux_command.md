@@ -1,5 +1,5 @@
 ---
-title: "#18 Call Linux cmmand"
+title: "Call Linux cmmand"
 author: Brandon Tsai
 ---
 
