@@ -148,9 +148,12 @@ between them.
 
 ```bash
 $ kubectl krew install ns
+
+# Switch to kube-system namespace
 $ kubectl ns kube-system
 Context "minikube" modified.
 Active namespace is "kube-system".
+
 $ kubectl get pods
 NAME                               READY   STATUS    RESTARTS   AGE
 coredns-66bff467f8-7xkvh           1/1     Running   2          41d
@@ -297,6 +300,20 @@ With this plugin installed, you can filter a pod with kubectl grep easily.
 ```bash
 $ kubectl grep pods "keyword"
 $ kubectl grep pods "keyword" -o wide
+```
+
+### **tree**
+
+This plugin shows sub-resources of a specified Kubernetes API object in a
+tree view in the command-line. The parent-child relationship is discovered
+using ownerReferences on the child object.
+
+```bash
+$ kubectl tree deploy vault-agent-injector
+NAMESPACE  NAME                                          READY  REASON  AGE
+default    Deployment/vault-agent-injector               -              7h
+default    └─ReplicaSet/vault-agent-injector-9456c6d55   -              7h
+default      └─Pod/vault-agent-injector-9456c6d55-lw7px  True           7h
 ```
 
 Conclusion

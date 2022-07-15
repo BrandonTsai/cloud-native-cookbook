@@ -29,7 +29,13 @@ Vault Components
 
 ![](https://mktg-content-api-hashicorp.vercel.app/api/assets?product=tutorials&version=main&asset=public%2Fimg%2Fvault%2Fvault-triangle.png)
 
+https://www.vaultproject.io/docs/internals/architecture
 
+
+### PATH
+In Vault, everything is path based. This means that every operation that is performed in Vault is done through a path. The path is used to determine the location of the operation, as well as the permissions that are required to execute the operation.
+
+A `path` specifies the storage location of your secret.
 
 ### Secret Engine
 
@@ -37,13 +43,37 @@ Secrets engines is used to store, generate or encrypt secrets/credentials.
 
 Vault support different kind of Secrets Engines, such as `key/value`,  `Database` and `SSH key`..etc
 
+```
+$ vault secrets list
+Path          Type         Accessor              Description
+----          ----         --------              -----------
+cubbyhole/    cubbyhole    cubbyhole_bf5c1325    per-token private secret storage
+identity/     identity     identity_0c631d6d     identity store
+sys/          system       system_5f907938       system endpoints used for control, policy and debugging
+/
+```
 
+
+
+The following paths are supported by this backend. To view help for
+any of the paths below, use the help command with any route matching
+the path pattern. Note that depending on the policy of your auth token,
+you may or may not be able to access certain paths.
+
+`dynamic secrets`
 
 ### Authentication Method
 
 Authentication in Vault is the process by which user or machine supplied information is verified against an internal or external system. Vault supports multiple auth methods including GitHub, LDAP, AppRole, and more. Each auth method has a specific use case.
 
 Before a client can interact with Vault, it must authenticate against an auth method. Upon authentication, a token is generated. This token is conceptually similar to a session ID on a website. The token may have attached policy, which is mapped at authentication time. This process is described in detail in the policies concepts documentation.
+
+```
+$ vault auth list
+Path      Type     Accessor               Description
+----      ----     --------               -----------
+token/    token    auth_token_2bae126c    token based credentials
+```
 
 Token
 
@@ -115,3 +145,15 @@ Policies are deny by default, so an empty policy grants no permission in the sys
 default
 root
 ```
+
+
+Practice
+---------
+
+
+> Create a database secret, and allow web application auth via token to read the database secrets
+
+> Allow a developer to authentication with user/password, and he can create/update.delete secrets
+
+
+> Create another Vault admin user and rotate root token.
