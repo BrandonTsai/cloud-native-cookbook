@@ -23,3 +23,5 @@ _book
 _site/
 _draft/
 .jekyll-cache/
+
+3_Kubernetes/vault/
