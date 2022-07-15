@@ -1,5 +1,5 @@
 ---
-title: "#13 Routines and Channels"
+title: " Routines and Channels"
 author: Brandon Tsai
 ---
 
