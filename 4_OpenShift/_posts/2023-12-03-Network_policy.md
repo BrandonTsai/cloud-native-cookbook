@@ -1,3 +1,8 @@
+---
+title: "#3 Openshift: Netwrok Policy "
+author: Brandon Tsai
+---
+
 
 In Kubernetes, all Pods are accessible from other Pods and network endpoints by default. To isolate and restrict traffic to pods in the cluster, we can install [Calico](https://docs.projectcalico.org/getting-started/kubernetes/) and create `NetworkPolicy` objects to indicate the allowed incoming connections. For OpenShift cluster, the OpenShift SDN already supports it in the default network isolation mode, the cluster administrator does not need to install Calico.
 
