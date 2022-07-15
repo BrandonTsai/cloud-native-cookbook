@@ -31,37 +31,25 @@ Vault Components
 
 
 
-Secret Engine
-------------
+### Secret Engine
 
-Secrets engines are Vault components which store, generate or encrypt secrets.
+Secrets engines is used to store, generate or encrypt secrets/credentials.
 
-
-### kv
-
-
-### ssh
+Vault support different kind of Secrets Engines, such as `key/value`,  `Database` and `SSH key`..etc
 
 
 
-Policies
----------
+### Authentication Method
 
-```
- vault policy list
-default
-root
-```
+Authentication in Vault is the process by which user or machine supplied information is verified against an internal or external system. Vault supports multiple auth methods including GitHub, LDAP, AppRole, and more. Each auth method has a specific use case.
 
-Authentication Method
--------------------
+Before a client can interact with Vault, it must authenticate against an auth method. Upon authentication, a token is generated. This token is conceptually similar to a session ID on a website. The token may have attached policy, which is mapped at authentication time. This process is described in detail in the policies concepts documentation.
 
-
-### token
+Token
 
 
 
-### userpass
+userpass
 
 
 ```bash
@@ -112,3 +100,18 @@ $ vault delete auth/userpass/users/brandon
 
 
 
+
+### Policies
+
+
+Everything in Vault is path-based, and policies are no exception. Policies provide a declarative way to grant or forbid access to certain paths and operations in Vault. This section discusses policy workflows and syntaxes.
+
+Policies are deny by default, so an empty policy grants no permission in the system.
+
+![](https://www.vaultproject.io/_next/image?url=https%3A%2F%2Fcontent.hashicorp.com%2Fapi%2Fassets%3Fproduct%3Dvault%26version%3Drefs%252Fheads%252Frelease%252F1.11.x%26asset%3Dwebsite%252Fpublic%252Fimg%252Fvault-policy-workflow.svg%26width%3D669%26height%3D497&w=1920&q=75)
+
+```
+ vault policy list
+default
+root
+```
