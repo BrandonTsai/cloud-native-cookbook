@@ -7,7 +7,7 @@ What is HashiCorp Vault
 ---------------
 
 
-
+HashiCorp Vault is an open-source tool that helps you manage and store sensitive credentials easily.
 
 Vault Installation via Helm
 -------------------
@@ -37,6 +37,7 @@ In Vault, everything is path based. This means that every operation that is perf
 
 A `path` specifies the storage location of your secret.
 
+>> Can Secret and Auth use same path?
 ### Secret Engine
 
 Secrets engines is used to store, generate or encrypt secrets/credentials.
@@ -157,3 +158,9 @@ Practice
 
 
 > Create another Vault admin user and rotate root token.
+
+
+Conclusion
+----------
+
+When credential management leaved me wanting and weary, it became my catalyst for action.

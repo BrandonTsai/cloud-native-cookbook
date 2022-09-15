@@ -1,1 +1,0 @@
-https://medium.com/@treeder/multi-stage-docker-builds-for-creating-tiny-go-images-e0e1867efe5a
