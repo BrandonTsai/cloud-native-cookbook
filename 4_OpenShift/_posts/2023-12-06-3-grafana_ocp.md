@@ -1,3 +1,8 @@
+---
+title: "#6-2 Monitoring with Grafana"
+author: Brandon Tsai
+---
+
 
 I followed the steps below to deploy a community-powered Grafana operator 3.5.0 from OperatorHub on a running OpenShift 4.5 cluster.  This allowed me to write custom queries against the built-in Prometheus to extract metrics relevant to me, and in turn I’m able to create custom dashboards to visualize those metrics.
 

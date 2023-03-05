@@ -1,5 +1,10 @@
-Monitor Kubernetes apps with Splunk - Part 1 : Introduction and Splunk Setting
-============================================================================
+---
+title: "#3-1 Monitor Kubernetes apps with Splunk"
+author: Brandon Tsai
+---
+
+Part 1 : Introduction and Splunk Setting
+===============================================
 
 Some companies use Splunk as the logging platform to store and to aggregate the logs for all their environments.
 This post explains how to integrate Splunk with Kubernetes using the [Splunk-connect-for-kubernetes](https://github.com/splunk/splunk-connect-for-kubernetes) helm charts.
@@ -10,10 +15,10 @@ Architecture
 
 Splunk-connect-for-kubernetes contains 3 componenets:
 
-| Component | Usage |
-| --------- | ------ |
-| logging   | To collect container logs. |
-| metric    | To collect metrics, such as cpu/memory usage. |
+| Component | Usage                                                                |
+| --------- | -------------------------------------------------------------------- |
+| logging   | To collect container logs.                                           |
+| metric    | To collect metrics, such as cpu/memory usage.                        |
 | objects   | To collect kubernetes resource status by calling the Kubernetes API. |
 
 
@@ -39,11 +44,11 @@ Create new app "kubernetes" or using exist app
 
 Create following indexes for the default indexes of http event collector
 
-| index name | type | app |
-| ---------- | ---- | --- |
-| k8s_\<ENV>_logging | Events | kubernetes |
+| index name         | type    | app        |
+| ------------------ | ------- | ---------- |
+| k8s_\<ENV>_logging | Events  | kubernetes |
 | k8s_\<ENV>_metrics | Metrics | kubernetes |
-| k8s_\<ENV>_objects | Events | kubernetes |
+| k8s_\<ENV>_objects | Events  | kubernetes |
 
 
 Note:
@@ -78,15 +83,15 @@ Navigate to Settings > Data Inputs > HTTP Event Collector
 
 We need to create 3 HEC token for logging, metrics and object
 
-| HEC Token name     | App Context | Select Allowed Indexes | Default index |
-| ------------------ | ----------- | ---------------------- | ------------- |
+| HEC Token name     | App Context | Select Allowed Indexes | Default index       |
+| ------------------ | ----------- | ---------------------- | ------------------- |
 | k8s-\<ENV>-logging | kubernetes  | k8s_\<ENV>\_logging    | k8s_\<ENV>\_logging |
 | k8s-\<ENV>-metrics | kubernetes  | k8s_\<ENV>\_metrics    | k8s_\<ENV>\_metrics |
 | k8s-\<ENV>-objects | kubernetes  | k8s_\<ENV>\_objects    | k8s_\<ENV>\_objects |
 
 
-Monitor Kubernetes apps with Splunk - Part 2 : logging
-=======================================================
+Part 2 : logging
+=========================
 
 Prerequisites
 --------------
@@ -159,8 +164,8 @@ Verify on Splunk
 ```
 index="k8s_<ENV>_logging"
 ```
-Monitor Kubernetes apps with Splunk - Part 3 : Metrics
-========================================================
+Part 3 : Metrics
+===================
 
 
 Prerequisites
@@ -249,8 +254,8 @@ Following splunk search can be used to check the supported dimensions of a metri
 | mcatalog values(_dims) WHERE index="*_metrics" AND metric_name="kube.pod.cpu.load.average.10s"
 ```
 
-Monitor Kubernetes apps with Splunk - Part 4 : Objects
-=========================================================
+Part 4 : Objects
+===================
 
 Splunk collects the resource information by calling the Kubernetes API. It help user/operator to set up splunk alerts when pod is in Error status.
 

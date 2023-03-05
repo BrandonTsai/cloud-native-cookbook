@@ -42,9 +42,9 @@ $ brew link --overwrite hyperkit
 
 2. download CodeReady Containers
 
-Download CodeReady Containers archive from the [Red Hat CodeReady Containers product page](the Red Hat CodeReady Containers product page)
+Download CodeReady Containers archive from the https://github.com/code-ready/crc
 
-3. extract the CodeReady Containers archive for your operating system and place the binary in your $PATH
+1. extract the CodeReady Containers archive for your operating system and place the binary in your $PATH
 
 ```
 $ cp crc /usr/local/bin/

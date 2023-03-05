@@ -1,5 +1,5 @@
 ---
-title: "#2 Improve Kubectl CLI via Krew"
+title: "#2-2 Improve Kubectl CLI via Krew"
 author: Brandon Tsai
 ---
 
