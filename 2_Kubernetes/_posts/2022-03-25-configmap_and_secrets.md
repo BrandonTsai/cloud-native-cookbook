@@ -9,7 +9,7 @@ Many applications require configuration using some combination of configuration 
 These configuration files and environment variables should be decoupled from docker image content  in order to keep containerized applications portable.
 In Kubernetes based platform, we could use `ConfigMap` and `Secret` object to setting configuration data separately from application code.
 
-A ConfigMap is an object used to store non-confidential data in key-value pairs, it does not provide secrecy or encryption. 
+A ConfigMap is an object used to store non-confidential data in key-value pairs, it does not provide secrecy or encryption.
 If the data you want to store are confidential, You can use a Secret rather than a ConfigMap. However, a Secret is justed encoded by Base64 in Kubernetes, it is not encrypted. The better way is using additional (third party) tools to keep your data private.
 
 | features       | ConfigMap | Secret |
@@ -30,6 +30,7 @@ Hint:
 - Use "--dry-run -o yaml " in pipeline, for example, `oc create configmap nginx-config --from-file=configs/nginx -n gts-lab-dev --dry-run -o yaml | oc apply -f -`
 
 ```bash
+# Create a new configmap from file in folder
 oc create configmap nginx-config --from-file=configs/nginx/nginx-app.conf -n gts-lab-dev --dry-run -o yaml | oc apply -f -
 
 oc create configmap nginx-html --from-file=configs/html -n gts-lab-dev --dry-run -o yaml | oc apply -f -
@@ -37,6 +38,13 @@ oc create configmap nginx-html --from-file=configs/html -n gts-lab-dev --dry-run
 oc create configmap nginx-html-icons --from-file=configs/html/icons -n gts-lab-dev --dry-run -o yaml | oc apply -f -
 
 oc create configmap nginx-app1-env --from-env-file=configs/app1.env -n gts-lab-dev --dry-run -o yaml | oc apply -f -
+
+# Create a new configmap named my-ssh-key with specified keys instead of names on disk
+oc create configmap my-ssh-config --from-file=ssh-config=~/.ssh/config --from-file=ssh-publickey=~/.ssh/id_rsa.pub --dry-run -o yaml | oc apply -f -
+
+# Create a new configMap named my-config with key1=config1 and key2=config2
+oc create configmap proxy-env --from-literal=HTTP_PROXY=https://myproxy.example.local --from-literal=NO_PROXY="*.example.local" --dry-run -o yaml | oc apply -f -
+
 ```
 
 
@@ -45,14 +53,19 @@ Create Secrets From Directories/file
 
 The Secret object type provides a mechanism to hold sensitive information such as passwords
 
-Hint: 
+Hint:
 
 - can not create secrets from nested floders/subfolders
 - Use "--dry-run -o yaml " in pipeline
 
 ```bash
+# Create a new secret from file
 oc create secret generic nginx-ssl-key --from-file=configs/ssl.key -n gts-lab-dev --dry-run -o yaml | oc apply -f -
 
+# Create a new secret from file with specified keys
+oc create secret generic nginx-ssl-key --from-file=nginx-key=configs/ssl.key -n gts-lab-dev --dry-run -o yaml | oc apply -f -
+
+# Create a new secret from raw data
 oc create secret generic pgsql-secret --from-literal pgsql_user=brandon --from-literal pgsql_key=testing123 --dry-run -o yaml | oc apply -f -
 ```
 
@@ -92,20 +105,20 @@ spec:
       containers:
       - name: nginx-app1
         image: registry.redhat.io/rhscl/nginx-114-rhel7:1
-        args: 
-        - nginx 
-        - -g 
+        args:
+        - nginx
+        - -g
         - 'daemon off;'
         ports:
         - containerPort: 8001
           protocol: TCP
-        env: 
+        env:
           - name: OS_TYPE
             valueFrom:
               configMapKeyRef:
                 name: example-env
-                key: os.type  
-        envFrom: 
+                key: os.type
+        envFrom:
           - configMapRef:
               name: nginx-app1-env
           - secretRef:

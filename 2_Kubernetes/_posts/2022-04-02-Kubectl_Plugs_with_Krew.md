@@ -1,12 +1,12 @@
 ---
-title: "#2-2 Improve Kubectl CLI via Krew"
+title: "#2-2 Using Kubectl CLI plugins via Krew"
 author: Brandon Tsai
 ---
 
 Instead of implementing shell scripts to perform some complex behaviours with kubectl, you can instead use kubectl plugins to extended its functionality. The easiest way to manage plugins is [Krew](https://github.com/kubernetes-sigs/krew). Krew is a tool that aims to ease plugin discovery, installation, upgrade, and removal on multiple operating systems. This article will show you how easy it is to grab and experiment with existing plugins.
 
 
-Prerequisites: Minikube or existing Kubernetes cluster.
+Prerequisites: Minikube Or Existing Kubernetes Cluster.
 -------------------------------------------------------
 
 You can refer https://kubernetes.io/docs/tasks/tools/install-minikube/ to install Minikube on your Machine.
@@ -82,7 +82,7 @@ Use "krew [command] --help" for more information about a command.
 ```
 
 
-Search plugins and get the detail of any particular plugin
+Search Plugins And Get The Details Of The Plugins
 -------------------------------------------------------
 
 List all plugins
@@ -315,6 +315,20 @@ default    Deployment/vault-agent-injector               -              7h
 default    └─ReplicaSet/vault-agent-injector-9456c6d55   -              7h
 default      └─Pod/vault-agent-injector-9456c6d55-lw7px  True           7h
 ```
+
+
+Implement Your Own Plugin
+----------------------
+
+A kubectl plugin is nothing but just a
+- standalone executable file,
+- whose name begins with `kubectl-`.
+
+To install a plugin, move the executable file to anywhere on your PATH
+If you have krew installed, you can put your executable file to `~/.krew/bin/`.
+
+For more detail of writing kubectl plugins, please refer https://kubernetes.io/docs/tasks/extend-kubectl/kubectl-plugins/
+
 
 Conclusion
 ----------
