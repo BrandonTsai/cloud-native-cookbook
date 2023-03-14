@@ -51,7 +51,7 @@ $ cp crc /usr/local/bin/
 ```
 
 4. setup cluster
-Once CodeReady Containers has been installed, set up your host environment with the `crc setup`command. This command must be run before starting the OpenShift cluster.
+Once CodeReady Containers has been installed, set up your host environment with the `crc setup` command. This command must be run before starting the OpenShift cluster.
 
 
 5. Start your OpenShift 4.x cluster
