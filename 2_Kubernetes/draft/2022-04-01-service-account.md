@@ -35,7 +35,7 @@ In this command, replace <secret_name> with the name of the secret associated wi
 After setting the expirationTimestamp field, the service account token will be valid until the specified time. Once the token has expired, you will need to rotate the token to generate a new token for the service account.
 
 
-Rotate the token of a service account
+Rotate the token of a service account manually
 ---------------------------------------
 
 Yes, you can rotate the token of a service account in OpenShift. Rotating the token is a good security practice and helps to ensure that the service account is secure.
@@ -49,3 +49,26 @@ In this command, replace <secret_name> with the name of the secret associated wi
 
 This command will generate a new token and update the secret associated with the service account with the new token. Once you have rotated the token, you will need to update any applications or processes that use the old token with the new token.
 
+
+Rotatle the token automatically
+-------
+
+Yes, it is possible to rotate the token of a service account automatically in OpenShift. OpenShift provides a feature called "Service Account Token Rotation" which allows you to automate the token rotation process.
+
+When the Service Account Token Rotation feature is enabled, OpenShift automatically rotates the tokens for all service accounts in your cluster based on the defined rotation interval. This ensures that your service accounts always have fresh tokens and helps prevent any unauthorized access to your cluster.
+
+To enable the Service Account Token Rotation feature, you need to create a service-account-controller ConfigMap in the openshift-config namespace with the desired rotation interval. The rotation interval is specified in seconds using the service-account-token-cleanup-interval key. For example, to set the rotation interval to 1 hour, you can create the ConfigMap with the following YAML:
+
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: service-account-controller
+  namespace: openshift-config
+data:
+  service-account-token-cleanup-interval: "3600"
+```
+
+Once you have created the service-account-controller ConfigMap, OpenShift will automatically rotate the tokens for all service accounts in your cluster based on the defined rotation interval.
+
+Note that token rotation can cause disruption to services that rely on service account tokens, so it's important to test this feature in a non-production environment first before enabling it in a production environment.
