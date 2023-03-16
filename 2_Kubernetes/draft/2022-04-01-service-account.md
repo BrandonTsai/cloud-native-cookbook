@@ -73,3 +73,34 @@ data:
 Once you have created the service-account-controller ConfigMap, OpenShift will automatically rotate the tokens for all service accounts in your cluster based on the defined rotation interval.
 
 Note that token rotation can cause disruption to services that rely on service account tokens, so it's important to test this feature in a non-production environment first before enabling it in a production environment.
+
+
+-------
+
+```yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: job-create-only-role
+rules:
+- apiGroups: ["batch", "extensions"]
+  resources: ["jobs"]
+  verbs: ["get", "list", "create"]
+- apiGroups: [""]
+  resources: ["pods"]
+  verbs: ["get", "list"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: external-sa-rolebinding
+  namespace: gts-lab-dev
+subjects:
+- kind: ServiceAccount
+  name: external
+  namespace: gts-lab-dev
+roleRef:
+  kind: Role
+  name: job-create-only-role
+  apiGroup: rbac.authorization.k8s.io
+```
