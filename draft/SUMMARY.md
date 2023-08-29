@@ -28,7 +28,7 @@ Introduction
   - https://www.kubermatic.com/products/kubermatic/
 - [cli tools for kubernetes](../blogs/05_Improve_Kubectl_Command_with_Krew.md)
 - k9s
-- odo
+- ks3
 
 
 Beginner
@@ -86,7 +86,36 @@ Monitoring
 
 CI/CD
 -----
-
 - Jenkins
   - "In-process Script Approval" in Jenkins & how to automatically approve.
 - Spinnaker
+
+DevSecOps CICD Pipeline
+--------------------------------
+* Tekton
+* Argo CD
+
+- [Talisman](https://github.com/thoughtworks/talisman)
+- SonarQube
+- Trivy
+- OPA
+- KubeSec
+
+
+
+K8S Security
+----------------------------
+
+- Istio/Service Mesh
+- Kube-bench
+- Falco
+- KubeScan
+- Kyverno
+- sealed-secrets or Vault
+
+
+Monitoring
+--------------------------------
+
+- OpenTelemetry
+- Pixie

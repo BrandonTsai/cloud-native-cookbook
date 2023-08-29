@@ -5,8 +5,6 @@ author: Brandon Tsai
 
 ## Container vs VM
 
-[<img src="https://i1.wp.com/www.docker.com/blog/wp-content/uploads/Blog.-Are-containers-..VM-Image-1.png?resize=1024%2C435&ssl=1" width="600">]()
-
 The container’s system requires an underlying operating system that provides the basic services to all of the containerized applications using virtual-memory support for isolation. 
 
 
