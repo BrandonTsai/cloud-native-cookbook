@@ -1,5 +1,5 @@
 ---
-title: "#6.1 OpenShift Monitoring - Prometheus"
+title: "#6 OpenShift Monitoring - Prometheus"
 author: Brandon Tsai
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: "#2 Openshift: Service & Route "
+title: "#2 Openshift: Service, Route and Deployment Strategies "
 author: Brandon Tsai
 ---
 
