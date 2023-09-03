@@ -8,14 +8,12 @@
   - Signals
   - OpenTelemetry Components overview
 
-# Chapter 2: Set up the Backend Observe Platform
-
-- Grafana Cloud ( Prometheus + Loki + Tempo ) Introduction
-
 # Chapter 3 : Otel SDKs (python as example)
 
 - Install python SDK
 - Instrumentation
+- exporter trace to Jarger
+- Grafana Cloud ( Prometheus + Loki + Tempo ) Introduction
 - exporter trace, metrics and logs to Grafana cloud
 - Create a new span and Check on Grafana
 - Cross-Correlation: Connecting Distributed Traces with Logs
