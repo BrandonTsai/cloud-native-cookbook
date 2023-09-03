@@ -1,5 +1,5 @@
 ---
-title: "# Foundations of Observability"
+title: "#1 Foundations of Observability"
 author: Brandon Tsai
 ---
 

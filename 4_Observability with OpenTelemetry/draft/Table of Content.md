@@ -3,29 +3,21 @@
 - What is Observability?
 - What is Distributed Trace?
 - What is Instrumentation?
-[- What is unique about cloud-native apps? (Refer Udemy)]
-- CNCF Observability 
-  - owned projects
-    - Monitoring: Prometheus, Grafana
-    - Logging: Fluentd, Loki
-    - Tracing: Jaeger, OpenTelemetry
-  - Venders: Splunk, DataDog, New Relic
+- CNCF Observability Landscape
 - What is OpenTelemetry(Otel)?
   - Signals
   - OpenTelemetry Components overview
 
 # Chapter 2: Set up the Backend Observe Platform
 
-- Kubernetes: by Kind?
-- Grafana ( + Loki? )
-- Jarger (UI)
+- Grafana Cloud ( Prometheus + Loki + Tempo ) Introduction
 
 # Chapter 3 : Otel SDKs (python as example)
 
-- Install
+- Install python SDK
 - Instrumentation
-- exporter to Jaeger and Grafana
-- Create a new span and Check on Jarger and Grafana
+- exporter trace, metrics and logs to Grafana cloud
+- Create a new span and Check on Grafana
 - Cross-Correlation: Connecting Distributed Traces with Logs
 
 
@@ -54,6 +46,7 @@ Analyzing Trace Data with Smart Sampling
 # Chapter 7: OpenTelemetry and Containers
 
 # Chapter 8: OpenTelemetry and Kubernetes
+- install Kubernetes: by Kind?
 
 # Chapter 9: OpenTelemetry and Serverless
 
