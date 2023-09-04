@@ -1,5 +1,5 @@
 ---
-title: "#4 Red Hat Quay Container Registry Overview"
+title: "#2-1 Red Hat Quay Container Registry Overview"
 author: Brandon Tsai
 ---
 

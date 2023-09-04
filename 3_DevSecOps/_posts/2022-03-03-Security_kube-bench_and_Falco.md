@@ -1,5 +1,5 @@
 ---
-title: "#4 Secure Openshift using kube-bench and Falco "
+title: "#3 Secure Openshift using kube-bench and Falco "
 author: Brandon Tsai
 ---
 

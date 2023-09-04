@@ -1,5 +1,5 @@
 ---
-title: "#2-2 Using Kubectl CLI plugins via Krew"
+title: "#2-1 Using Kubectl CLI plugins via Krew"
 author: Brandon Tsai
 ---
 

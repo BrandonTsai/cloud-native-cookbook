@@ -1,5 +1,5 @@
 ---
-title: "#1-1 ConfigMap and Secret Usage"
+title: "#2-2 ConfigMap and Secret Usage"
 author: Brandon Tsai
 ---
 

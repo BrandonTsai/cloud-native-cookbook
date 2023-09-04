@@ -1,5 +1,5 @@
 ---
-title: "#5 Scan Openshift vulnerabilities using Quay Operator "
+title: "#4 Scan Openshift vulnerabilities using Quay Operator "
 author: Brandon Tsai
 ---
 

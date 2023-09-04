@@ -42,6 +42,7 @@ k8s & ocp
 - RBAC management
 - etcd backuo and rollback
 - Ingress Controller setup
+- OCP Setup
 
 ### Basic Deployment
 
@@ -71,9 +72,8 @@ Observability
 ----------------------------------------------------------------
 
 - Prometheus and Grafana
-  - Scale with M3
 - OpenTelemetry
-- Pixie
+- Splunk
 - Chaos Engineering
 
 DevSecOps 
