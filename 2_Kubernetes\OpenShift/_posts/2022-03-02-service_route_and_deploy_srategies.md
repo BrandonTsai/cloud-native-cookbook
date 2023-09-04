@@ -25,7 +25,7 @@ The developers can use `Route` to expose a service directly without any complica
 
 Following is the concept of the Openshift Networking Model:
 
-![](19_images/network_1.png)
+![](images/ocp_route_1.png)
 
 
 
@@ -34,7 +34,7 @@ OpenShift Route
 
 Openshift Route is similar to Kubernetes Ingress, but it has additional capabilities such as splitting traffic between multiple backends, sticky sessions, etc. When a Route object is created on OpenShift, it gets picked up by the built-in HAProxy load balancer in order to expose the requested service and make it externally available with the given configuration.
 
-![](19_images/network_ingress_route.png)
+![](images/ocp_ingress_route.png)
 
 
 **Route without SSL Example**
