@@ -59,6 +59,17 @@ Enhance trace context with metadata that provides valuable insights into request
 Facilitate debugging and troubleshooting by preserving context as requests traverse multiple services.
 
 
+Choose observability backend for OpenTelemetry
+--------------------------------------
+
+There are two major steps involved in setting up observability for your application:
+
+- **Instrumentation**: Collecting relevant data such as trace, metrics and logs that indicates the application health and behaviors.
+- **Observability backend**: Storing, managing, and visualizing the collected data to take quick actions
+
+While OpenTelemetry pay attentions to addresses the first step, you still need to set up a tool like Jaeger, Grafa or Splunk for storing and visualizing telemetry data.
+
+
 Components and Architecture of OpenTelemetry
 ----------------------------------------------------------------
 
