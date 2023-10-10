@@ -1,9 +1,9 @@
 ---
-title: "#5 Demystifying Instrumentation in Software Development"
+title: "#5 OpenTelemetry Introduction"
 author: Brandon Tsai
 ---
 
-Introducing OpenTelemetry
+What is OpenTelemetry
 =========================
 
 OpenTelemetry (also referred to as OTel) is an open source observability framework made up of a collection of tools, APIs, and SDKs. 
