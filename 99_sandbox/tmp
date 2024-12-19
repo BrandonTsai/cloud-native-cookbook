@@ -1,0 +1,1 @@
+kubectl get deployments -n <namespace> -o jsonpath='{range .items[*]}{"\n\nDeployment: "}{.metadata.name}{"\nImages: "}{range .spec.template.spec.containers[*]}{.image}{" "}{end}{end}' && echo
