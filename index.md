@@ -7,7 +7,7 @@ author: Brandon Tsai
 https://brandontsai.github.io/cloud-native-cookbook/
 
 
-Brain Dump - Future Plan
+Brain Dump - 2025 RoadMap
 ================================================
 
 Container
@@ -17,73 +17,72 @@ Container
 - Podman
   - Introduction and Basic Usage
   - Run containers in a pod
-  - (Review) https://www.redhat.com/sysadmin/basic-security-principles-containers
 - Buildah
 - Skopeo
 - Registry
   - Harbor
   - Redhat Quay
+  - **[ Reduce 50% Storage capacity ]**
+  - **[ Monitor Container Registry with AquaSec ]**
+  - **[ Secure your container images ]**
+    - (Review) https://www.redhat.com/sysadmin/basic-security-principles-containers
 
 
 k8s & ocp
 --------
 
-### Primer: Setup and Management
+### Primer: Cluster Setup and App Deployment
 
-- Kubernetes Introduction
 - Set up
   - minikube
-  - kops
-  - Rancher labs
-  - https://www.kubermatic.com/products/kubermatic/
   - k9s
   - ks3
-  - kind?
-- RBAC management
-- etcd backuo and rollback
-- Ingress Controller setup
-- OCP Setup
-
-### Basic Deployment
-
 - Krew: cli tools for kubernetes
 - From Pod to StatefulSets/Deployment/DaemonSet
 - ConfigMap
 - Secrets
-- PVC, PV
-- Health Checks
-- Quota and LimitRange
-- Autoscaling: HPA & CA
+- **[ Autoscaling with HPA, VPA & CA]**
 - Service, Ingress, and Deployment Strategies
 - Assigning Pods to Nodes
+- RBAC management
+  - Role binding with CLusterRole
+  - **[ ServiceAccount Token Rotation ]**
 
 ### Advanced Usage
 
-- Helm 3
-- Operator
-  - Postgresql
+- Operator LCM Concept
   - https://www.noobaa.io/
+  - **[ OperatorGroup Introduction ]**
 - Write your own Operator
+  - odo 2.0: https://developers.redhat.com/blog/2020/10/06/kubernetes-integration-and-more-in-odo-2-0/?sc_cid=7013a00000264DlAAI
+- Knative
+
 - BACKUP AND RESTORE EKS USING VELERO
-- Knative 
-- odo 2.0: https://developers.redhat.com/blog/2020/10/06/kubernetes-integration-and-more-in-odo-2-0/?sc_cid=7013a00000264DlAAI
+
+
+IaC - Infra as Code
+-----------------------------------
+
+- Helm3 vs Kustomize
+- GitOps --> `**GitOps Certified Associate**`
+- ArgoCD --> `**Certified Argo Project Associate**`
+  - **[How to set up Helm proxy in ArgoCD]** 
+
 
 Observability
 ----------------------------------------------------------------
 
-- Prometheus and Grafana
-- OpenTelemetry
-- Splunk
+- Prometheus and GrafanaLab
+- OpenTelemetry --> `**OpenTelemetry Certified Associate**`
+- **Splunk**
+  - Collect Prometheus metrics with Splunk-Otel
 - Chaos Engineering
 
-DevSecOps 
+Security
 ----------------------------------------------------------------
 
 ### CICD Pipeline
 
-- Tools:
-  * Tekton
-  * Argo CD
 - Spinnaker
 - [Talisman](https://github.com/thoughtworks/talisman)
 - SonarQube
@@ -95,14 +94,15 @@ DevSecOps
 ### K8S Security
 
 - Istio/Service Mesh
+- Service Mesh - istio: listen to the traffic, end to end encryption
 - Kube-bench
 - KubeScan
 - Kyverno
 - sealed-secrets or Vault
 - Falco(https://ithelp.ithome.com.tw/articles/10248703)
 - Open Policy Agent
-- Service Mesh - istio: listen to the traffic, end to end encryption
 - CIS.check for k8s
 - Network policy: Calico
 - HashiCorp Vault Test with Openshift Secrets
 - Spiffe: Universal identity control plane for distributed systems
+- eBPF & Cilium

@@ -6,28 +6,31 @@
 - CNCF Observability Landscape
 - What is OpenTelemetry(Otel)?
 
-## Chapter 3 : OpenTelemetry code instrumentation & SDKs 
+## Chapter 2 : OpenTelemetry code instrumentation & SDKs 
 
 - Introduction to OpenTelemetry code instrumentation.
 - Prerequisites: install python and flask as examples
 - Manually Instrumentation and exporter trace to Jarger
 - Auto Instrumentation and exporter trace and metric to Grafana Cloud ( Prometheus + Loki + Tempo ) Introduction
 
-## Chapter 4 : Otel Collectoers 
+## Chapter 3 : Otel Collectoers 
 
-- Introduction
-- Install & Configure (exporter to Jaeger and Grafana)
-- Update previous python SDK example exporter to Otel collector
-- encryption or even sensitive data filtering
+- [] Introduction
+- [] Install & Configure (exporter to Jaeger and Grafana)
+- [] Update previous python SDK example exporter to Otel collector
+- [] encryption or even sensitive data filtering
 
 ## Chapter 5: OpenTelemetry and Containers
+- [] 
 
 ## Chapter 6: OpenTelemetry and Kubernetes
-- Install Kubernetes: by Kind?
-- OpenTelemetry Operator
-- OpenTelemetry Collector to Gragana Cloud
+- [] Install Kubernetes: by Kind?
+- [] OpenTelemetry Operator
+- [] OpenTelemetry Collector to Gragana Cloud
 
 ## Chapter 7: OpenTelemetry and Serverless
+
+- [] 
 
 Advanced Configurations
 ================================================================
