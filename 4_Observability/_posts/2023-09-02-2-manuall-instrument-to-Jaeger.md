@@ -1,5 +1,5 @@
 ---
-title: "#6-1 Manual Instrumentation for Exporting Python Traces to Jaeger"
+title: "#6-1 Manual Instrumentation SDK for Exporting Python Traces to Jaeger"
 author: Brandon Tsai
 ---
 
