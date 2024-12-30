@@ -20,7 +20,7 @@
 - [] Update previous python SDK example exporter to Otel collector
 - [] encryption or even sensitive data filtering
 
-## Chapter 5: OpenTelemetry and Containers
+## Chapter 5: OpenTelemetry and Hosted VMs
 - [] Monitor Local Docker Containers on VM with OpenTelemetry
 
 ## Chapter 6: OpenTelemetry and Kubernetes
@@ -54,9 +54,7 @@ Analyzing Trace Data with Smart Sampling
 
 ## Chapter 10: Splunk
 
-- SDK to splunk
-- Container to Splunk
-- k8s to splunk
+- Splunk-Otel-Collector
   - Collect Prometheus metrics with Splunk-Otel
   - Collect etcd metrics from OCP node exporter to Splunk
   - Collect Journald Logs from OCP node exporter to Splunk

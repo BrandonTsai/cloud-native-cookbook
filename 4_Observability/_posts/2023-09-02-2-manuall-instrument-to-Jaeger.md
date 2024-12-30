@@ -1,5 +1,5 @@
 ---
-title: "#6 Exporting Python Traces to Jaeger with OpenTelemetry Manual Instrumentation"
+title: "#6-1 Manual Instrumentation for Exporting Python Traces to Jaeger"
 author: Brandon Tsai
 ---
 
