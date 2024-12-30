@@ -4,7 +4,6 @@ author: Brandon Tsai
 ---
 
 
-
 Understanding Observability in Modern Applications
 ----------------------------------------------------------------
 
@@ -15,9 +14,36 @@ Observability goes beyond traditional monitoring. It's not just about collecting
 Exploring the Concept of Observability
 --------------------------------
 
-Observability is more than just a buzzword; it's a paradigm that holds the key to unlocking insights into the inner workings of software systems. At its core, observability is the practice of obtaining visibility into the state and behavior of applications and infrastructure. It enables you to answer crucial questions about how your software is performing, how users are interacting with it, and where potential issues might lie.
+Observabilitys is a modern paradigm that holds the key to unlocking insights into the inner workings of software systems. At its core, observability is the practice of obtaining visibility into the state and behavior of applications and infrastructure. It enables you to answer crucial questions about how your software is performing, how users are interacting with it, and where potential issues might lie.
 
 Observability transcends the traditional model of monitoring, which often involves collecting predefined metrics and alerts. Instead, it introduces a holistic approach that encompasses understanding the full lifecycle of requests, interactions, and changes within a system. Observability provides the ability to track down the root causes of anomalies, pinpoint performance bottlenecks, and make data-informed decisions to enhance the user experience.
+
+
+Observability Maturity Stages:
+--------------------------------
+
+### Stage 1: Reactive (Monitoring)
+
+- **What** happened?
+- Focus on collecting data & discovering outages.
+- Alarms are triggered to signal that something went wrong.
+
+### Stage 2: Proactive (Observability)
+
+- **Why** happend?
+- Focus on giving context to the data & understand system behaviors.
+- It combine the results from metrics, logs, and traces to help identify
+  - why the issue occurred,
+  - when it started,
+  - what areas are impacted.
+
+### Stage 3: Predictive (AI Obs)
+
+- **How** to redict and react?
+- As the usage of AI/ML algorithms helps identify error correlation patterns and offers remediation workflows. Here you start understanding how to predict anomalies and automate response.
+- With the AI Obs, you do not need to spend time on the search script to get the comprehensive insights, just tell the AI what you want to observe, let AI generate the search for you.
+
+
 
 The Three Pillars of Observability: Logs, Metrics, and Traces
 ----------------------------------------------------------------
@@ -29,6 +55,20 @@ At the heart of observability lie three essential pillars that together provide 
 **Metrics**: Metrics are quantitative measurements that quantify the behavior of a system over time. These measurements include resource utilization, performance indicators, response times, error rates, and more. Metrics provide a real-time view of the health and performance of various components, enabling proactive monitoring and rapid response to deviations from expected behavior.
 
 **Traces**: Traces capture the journey of a request or transaction as it traverses through different components and services in a distributed system. Traces provide insights into the end-to-end flow of requests, uncovering latency bottlenecks, identifying dependencies, and helping to diagnose complex performance issues.
+
+
+
+Key Purposes of Observability
+------------------------------
+
+- Proactive Problem Detection: Identify anomalies, degradations, or failures in systems before they impact users.
+- Root Cause Analysis: Quickly pinpoint the source of issues using logs, metrics, and traces.
+- Performance Optimization: Understand system bottlenecks and areas for improvement to enhance efficiency.
+- Reliability Assurance: Ensure systems meet Service Level Agreements (SLAs) and reliability expectations.
+- Enhanced Debugging: Facilitate in-depth investigation during incidents or failures.
+- Improved Collaboration: Provide shared insights for development, operations, and business teams.
+- Automation Enablement: Support automated responses to predefined patterns or thresholds.
+- User Experience Insights: Monitor how system performance affects end-user experience.
 
 
 
@@ -48,13 +88,11 @@ The adoption of observability practices directly correlates with business succes
 - Proactive Monitoring: The ability to track trends and deviations enables proactive monitoring and early detection of potential issues before they escalate.
 
 
+
+
 Conclution
 --------
 
 In this article, we've explored the essence of observability, delved into its foundational components, and outlined the tangible business value it offers. Observability isn't just a buzzword for monitoring, it is the insignt you need to know exactly what to monitor. Observability does not replace monitoring, instead, we usually use both monitoring and observability to find and fix application issues to provide an optimal end-user experience.
 
-| Monitoring                                     | Observability                                                     |
-| ---------------------------------------------- | ----------------------------------------------------------------- |
-| Reactive                                       | Proactive                                                         |
-| **What** happened?                             | **Why** happened?                                                 |
-| Focus on collecting data & discovering outages | Focus on giving context to the data & understand system behaviors |
+

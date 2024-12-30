@@ -7,8 +7,26 @@ author: Brandon Tsai
 https://brandontsai.github.io/cloud-native-cookbook/
 
 
-Brain Dump - 2025 RoadMap
+Brain Dump - 2025 RoadMap Q1
 ================================================
+
+Observability
+----------------------------------------------------------------
+
+- **OpenTelemetry** --> `**OpenTelemetry Certified Associate**`
+  - OpenTelemetry Concept and components
+- **Splunk**
+  - Collect Prometheus metrics with Splunk-Otel
+  - Collect etcd metrics from OCP node exporter to Splunk
+  - Collect Journald Logs from OCP node exporter to Splunk
+  - From Splunk Enterprise to Splunk Cloud
+
+- **eBPF and Cilium**
+  - Monitor Network metrics with Cilium?
+
+
+Brain Dump - Catalog
+===================
 
 Container
 -------
@@ -41,7 +59,8 @@ k8s & ocp
 - From Pod to StatefulSets/Deployment/DaemonSet
 - ConfigMap
 - Secrets
-- **[ Autoscaling with HPA, VPA & CA]**
+- **[ Autoscaling with HPA, VPA, CA (Cluster Autoscaler) ]**
+- **[ Autoscaling with KEDA]**
 - Service, Ingress, and Deployment Strategies
 - Assigning Pods to Nodes
 - RBAC management
@@ -56,7 +75,6 @@ k8s & ocp
 - Write your own Operator
   - odo 2.0: https://developers.redhat.com/blog/2020/10/06/kubernetes-integration-and-more-in-odo-2-0/?sc_cid=7013a00000264DlAAI
 - Knative
-
 - BACKUP AND RESTORE EKS USING VELERO
 
 
@@ -69,14 +87,6 @@ IaC - Infra as Code
   - **[How to set up Helm proxy in ArgoCD]** 
 
 
-Observability
-----------------------------------------------------------------
-
-- Prometheus and GrafanaLab
-- OpenTelemetry --> `**OpenTelemetry Certified Associate**`
-- **Splunk**
-  - Collect Prometheus metrics with Splunk-Otel
-- Chaos Engineering
 
 Security
 ----------------------------------------------------------------
@@ -93,16 +103,14 @@ Security
 
 ### K8S Security
 
-- Istio/Service Mesh
 - Service Mesh - istio: listen to the traffic, end to end encryption
 - Kube-bench
 - KubeScan
 - Kyverno
-- sealed-secrets or Vault
+- sealed-secrets
 - Falco(https://ithelp.ithome.com.tw/articles/10248703)
 - Open Policy Agent
 - CIS.check for k8s
 - Network policy: Calico
-- HashiCorp Vault Test with Openshift Secrets
 - Spiffe: Universal identity control plane for distributed systems
 - eBPF & Cilium

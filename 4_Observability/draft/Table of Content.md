@@ -13,7 +13,7 @@
 - Manually Instrumentation and exporter trace to Jarger
 - Auto Instrumentation and exporter trace and metric to Grafana Cloud ( Prometheus + Loki + Tempo ) Introduction
 
-## Chapter 3 : Otel Collectoers 
+## Chapter 3 : Otel Collectoers
 
 - [] Introduction
 - [] Install & Configure (exporter to Jaeger and Grafana)
@@ -21,12 +21,12 @@
 - [] encryption or even sensitive data filtering
 
 ## Chapter 5: OpenTelemetry and Containers
-- [] 
+- [] Monitor Local Docker Containers on VM with OpenTelemetry
 
 ## Chapter 6: OpenTelemetry and Kubernetes
-- [] Install Kubernetes: by Kind?
+- [] Install Kubernetes: by Kind, K3S?
 - [] OpenTelemetry Operator
-- [] OpenTelemetry Collector to Gragana Cloud
+- [] OpenTelemetry Collector to Grafana Cloud
 
 ## Chapter 7: OpenTelemetry and Serverless
 
@@ -57,6 +57,10 @@ Analyzing Trace Data with Smart Sampling
 - SDK to splunk
 - Container to Splunk
 - k8s to splunk
+  - Collect Prometheus metrics with Splunk-Otel
+  - Collect etcd metrics from OCP node exporter to Splunk
+  - Collect Journald Logs from OCP node exporter to Splunk
+  - From Splunk Enterprise to Splunk Cloud
 
 
 ## Chapter 11: Advanced Topics in OpenTelemetry
@@ -68,6 +72,7 @@ Best Practices for Configuring and Managing OpenTelemetry
 
 ## Chapter 12: Conclution
 
+- How to balance the cost of Observability?
 - Future of OpenTelemetry and Observability
   - Trends and Innovations in Observability Space
   - Ongoing Developments and Community Contributions to OpenTelemetry
