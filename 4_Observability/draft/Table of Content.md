@@ -1,3 +1,24 @@
+2025 Q1
+===========
+
+
+OTel
+
+- [] Otel-Collector Component Introduction
+
+Splunk-Otel-Collector
+
+- [] Collect Prometheus metrics with Splunk-Otel
+- [] Collect etcd metrics from OCP node exporter to Splunk
+- [] Collect Journald Logs from OCP node exporter to Splunk
+- [] **From Splunk Enterprise to Splunk Cloud**
+
+eBPF:
+
+- [] eBPF Network Collector - https://github.com/open-telemetry/opentelemetry-network
+
+
+
 
 Observability with OpenTelemetry
 ===================================
@@ -20,6 +41,7 @@ Observability with OpenTelemetry
 
 ## Chapter 3 : Backend Provider - Grafana Lab/Stack
 
+- Grafana Cloud as Example
 - https://grafana.com/oss/
 
 
@@ -71,6 +93,7 @@ Best Practices for Configuring and Managing OpenTelemetry
 
 
 ## Chapter 11: Explore Other Backend Provider - Splunk
+
 - Splunk-Otel-Collector
   - Collect Prometheus metrics with Splunk-Otel
   - Collect etcd metrics from OCP node exporter to Splunk
@@ -84,6 +107,8 @@ Best Practices for Configuring and Managing OpenTelemetry
   https://github.com/open-telemetry/opentelemetry-network
 - eBPF based automatic instrumentation for HTTP/gRPC App
   Grafana Beyla: https://grafana.com/oss/beyla-ebpf/
+- Cilium 
+https://cilium.io/use-cases/metrics-export/
 
 
 
@@ -100,3 +125,6 @@ Best Practices for Configuring and Managing OpenTelemetry
 
 Observability with eBPF
 ===================================
+
+The same use case for eBPF makes projects like Falco (security), Pixie (APM for apps on Kubernetes), and Cilium (networking monitoring) possible.
+
