@@ -14,6 +14,6 @@ Goal: Transform OpenSource Focalboard (https://github.com/mattermost-community/f
 - Resource Optimization
 - Security Hardening
 
-## Learn from Job: Master Kubernetes
+## Learn from Job: Master Kubernetes and SRE
 
 Goal: We redesigned our container registry platform to be cloud-native, HA, and SRE-aligned.
